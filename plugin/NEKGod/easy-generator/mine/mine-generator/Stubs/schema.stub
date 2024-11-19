@@ -1,0 +1,26 @@
+<?php
+namespace {NAMESPACE};
+
+{USE}
+use Hyperf\Swagger\Annotation\Property;
+use Hyperf\Swagger\Annotation\Schema;
+
+/**
+ * {COMMENT}
+ */
+#[Schema(title: '{MODEL}Schema')]
+class {CLASS_NAME} implements \JsonSerializable
+{
+{LIST}
+
+
+    public function __construct({MODEL} $model)
+    {
+{GETASSIGNMENTLIST}
+    }
+
+    public function jsonSerialize(): array
+    {
+        return {getArrayList};
+    }
+}

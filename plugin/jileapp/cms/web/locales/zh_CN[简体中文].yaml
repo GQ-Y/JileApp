@@ -1,0 +1,99 @@
+cms:
+  menu:
+    cms: 内容管理
+    tag: 标签管理
+    snippets: 变量管理
+    categorie: 分类管理
+    article: 文章管理
+    advertisement: 广告管理
+    position: 广告位管理
+  tag:
+    subTitle: 你可在此处创建标签，并进行标签管理
+    name: 标签名称
+    alias: 标签别名
+    status: 状态
+    enable: 启用
+    disable: 禁用
+  snippets:
+    subTitle: 你可通过创建调用代码来管理你的CMS内容
+    name: 名称
+    code: 调用代码
+    codeOnlyContainLetterAndUnderline: 调用代码只能包含英文字母和下划线
+    content: 内容
+    description: 描述
+    status: 状态
+    enable: 启用
+    disable: 禁用
+  position:
+    subTitle: 你可在此处创建广告位，并进行广告位管理
+    name: 广告位名称
+    code: 广告位代码
+    description: 描述
+    type: 类型
+    status: 状态
+    enable: 启用
+    disable: 禁用
+    title: 广告标题
+    content: 内容
+    start_time: 开始时间
+    end_time: 结束时间
+    sort: 排序
+    text: 文字
+    link: 链接
+    image: 图片
+    video: 视频
+    audio: 音频
+    width: 宽度
+    height: 高度
+  categorie:
+    subTitle: 你可在此处创建分类，并进行分类管理
+    name: 分类名称
+    alias: 分类别名
+    description: 分类描述
+    parentId: 父分类ID
+    sort: 排序
+    status: 状态
+    enable: 启用
+    disable: 禁用
+  article:
+    subTitle: 你可在此处创建文章，并进行文章管理
+    title: 文章标题
+    alias: 文章别名
+    categoryId: 分类ID
+    status: 状态
+    published: 发布
+    publishedAt: 发布时间
+    thumbnail: 缩略图
+    content: 内容
+    confirmPublish: 确认发布
+    publishSuccess: 发布成功
+    confirmUnpublish: 确认下架
+    unpublishSuccess: 下架成功
+    draft: 草稿
+    draftSuccess: 草稿成功
+    unpublished: 未发布
+    archived: 已归档
+    summary: 摘要
+  advertisement:
+    subTitle: 你可在此处创建广告，并进行广告管理
+    title: 广告标题
+    type: 类型
+    url: 链接地址
+    startTime: 开始时间
+    endTime: 结束时间
+    sort: 排序
+    image: 图片上传
+    video: 视频上传
+    audio: 音频上传
+    content: 内容
+    viewFile: 查看文件
+    noFile: 无文件
+    status: 状态
+    enable: 启用
+    disable: 禁用
+    link: 链接
+    text: 文字
+form:
+  pleaseInput: 请输入
+  id: ID
+  pleaseSelect: 请选择

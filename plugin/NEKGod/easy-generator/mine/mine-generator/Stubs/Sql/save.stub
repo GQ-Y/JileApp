@@ -1,0 +1,6 @@
+
+INSERT INTO `{TABLE_NAME}`
+(`parent_id`, `name`, `meta`, `path`, `component`, `redirect`, `status`, `sort`, `created_by`, `updated_by`, `created_at`, `updated_at`, `remark`)
+ VALUES
+(@id, '{CODE}:save', '{\"i18n\": \"\", \"type\": \"B\", \"title\": \"{NAME}添加\"}',
+'{ROUTE}', '{VUE_TEMPLATE}', '', 1, 0, 0, 1, now(), now(), '');

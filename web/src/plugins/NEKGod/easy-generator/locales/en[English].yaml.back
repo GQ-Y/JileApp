@@ -1,0 +1,7 @@
+menu:
+  codeGenerator: Code generator
+cgText:
+  mainTitle: Code Generator
+  subTitle: Provides CRUD Generation Capabilities
+  loadTable: Load Table
+  tableName: TableName

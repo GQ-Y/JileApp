@@ -1,0 +1,16 @@
+
+
+    #[Delete(
+        path: '{CONTROLLER_ROUTE}',
+        operationId: '{OPERATION_ID}Delete',
+        summary: '删除{COMMENT}',
+        security: [['Bearer' => [], 'ApiKey' => []]],
+        tags: ['{COMMENT}']
+    )]
+    #[PageResponse(instance: new Result())]
+    #[Permission(code: '{DELETE_PERMISSION}')]
+    public function delete(): Result
+    {
+      $this->service->deleteById($this->getRequest()->all(), false);
+      return $this->success();
+    }

@@ -1,0 +1,8 @@
+
+/**
+* 获取{BUSINESS_NAME}分页列表
+* @returns
+*/
+export function page(data: any): Promise<ResponseStruct<any>> {
+    return useHttp().get('{REQUEST_ROUTE}/list', { params: data })
+}

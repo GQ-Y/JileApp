@@ -1,0 +1,44 @@
+/**
+ * MineAdmin is committed to providing solutions for quickly building web applications
+ * Please view the LICENSE file that was distributed with this source code,
+ * For the full copyright and license information.
+ * Thank you very much for using MineAdmin.
+ *
+ * @Author X.Mo<root@imoi.cn>
+ * @Link   https://github.com/mineadmin
+ */
+import type { App } from 'vue'
+import type { Plugin } from '#/global'
+
+const pluginConfig: Plugin.PluginConfig = {
+  // eslint-disable-next-line unused-imports/no-unused-vars
+  install(app: App) {},
+  config: {
+    enable: true,
+    info: {
+      name: 'nek/easy-generator',
+      version: '1.2.0',
+      author: 'NEK',
+      description: 'MineAdmin 2.0迁移3.0 代码生成器，提供一键生成CRUD功能',
+    },
+  },
+  views: [
+    {
+      name: 'easyGenerator',
+      path: '/easy-generator',
+      meta: {
+        title: 'easy代码生成器1.2.0',
+        i18n: '',
+        icon: 'i-solar:code-square-outline',
+        type: 'M',
+        hidden: false,
+        breadcrumbEnable: true,
+        copyright: true,
+        cache: true,
+      },
+      component: () => import(('./views/index.vue')),
+    },
+  ],
+}
+
+export default pluginConfig

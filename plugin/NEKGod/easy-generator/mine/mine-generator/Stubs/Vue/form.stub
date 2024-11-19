@@ -1,0 +1,49 @@
+<!--
+ - MineAdmin is committed to providing solutions for quickly building web applications
+ - Please view the LICENSE file that was distributed with this source code,
+ - For the full copyright and license information.
+ - Thank you very much for using MineAdmin.
+ -
+ - @Author X.Mo<root@imoi.cn> and NEKGod<1559096467@qq.com>
+ - @Link   https://github.com/mineadmin
+-->
+<script setup lang="ts">
+{IMPORT_JS}
+
+defineOptions({ name: '{CODE}:form' })
+
+const { formType = 'add', data = null } = defineProps<{
+  formType: 'add' | 'edit'
+  data?: any | null
+}>()
+
+const t = useTrans().globalTrans
+const formRef = ref<MaFormExpose>()
+const formData = ref<any>({})
+
+useForm('formRef').then((form: MaFormExpose) => {
+  if (formType === 'edit' && data) {
+    Object.keys(data).map((key: string) => {
+      formData.value[key] = data[key]
+    })
+  }
+  form.setItems(getFormItems(formType, t, formData.value))
+  form.setOptions({
+    labelWidth: '80px',
+  })
+})
+
+{FUNCTION_List}
+
+defineExpose({
+  {DEFINE_EXPOSE_IMPORT}
+})
+</script>
+
+<template>
+  <ma-form ref="formRef" v-model="formData" />
+</template>
+
+<style scoped lang="scss">
+
+</style>

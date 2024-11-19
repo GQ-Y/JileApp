@@ -1,0 +1,29 @@
+version: '3'
+services:
+  hyperf:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    restart: always
+    environment:
+      - "TIMEZONE=Asia/Shanghai"
+      - "APP_NAME=MineAdmin"
+    working_dir: "/opt/www"
+    volumes:
+      - ./:/opt/www
+    entrypoint: ["php", "watch", "-c"]
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mineadmin
+  redis:
+    image: redis:alpine
+    restart: always
+  frontend:
+    build:
+      context: ./web
+    environment:
+      MINE_NODE_ENV: production
+    restart: always

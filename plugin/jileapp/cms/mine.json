@@ -1,0 +1,23 @@
+{
+    "name": "jileapp/cms",
+    "version": "1.0.0",
+    "type": "mixed",
+    "description": "一个功能完善的内容管理系统插件",
+    "author": [
+        {
+            "name": "GQ-Y"
+        }
+    ],
+    "composer": {
+        "require": [],
+        "psr-4": {
+            "Plugin\\Cms\\": "src"
+        },
+        "installScript": "Plugin\\Cms\\InstallScript",
+        "uninstallScript": "Plugin\\Cms\\UninstallScript",
+        "config": "Plugin\\Cms\\ConfigProvider"
+    },
+    "package": {
+        "dependencies": []
+    }
+}

@@ -1,0 +1,17 @@
+
+
+    #[Get(
+        path: '{CONTROLLER_ROUTE}/list',
+        operationId: '{OPERATION_ID}List',
+        summary: '{COMMENT}列表',
+        security: [['Bearer' => [], 'ApiKey' => []]],
+        tags: ['{COMMENT}'],
+    )]
+    #[Permission(code: '{INDEX_PERMISSION}')]
+    #[PageResponse(instance: {SCHEMA}::class)]
+    public function page(Request $request): Result
+    {
+        return $this->success(data: $this->service->page(array_merge([
+
+        ], $request->all()), (int) $request->query('page'), (int) $request->query('page_size')));
+    }

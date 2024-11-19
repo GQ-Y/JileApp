@@ -1,0 +1,18 @@
+INSERT INTO `{TABLE_NAME}`
+(`parent_id`, `name`, `meta`, `path`, `component`, `redirect`, `status`, `sort`, `created_by`, `updated_by`, `created_at`, `updated_at`, `remark`)
+ VALUES
+({PARENT_ID}, '{CODE}', '{\"i18n\": \"\", \"icon\": \"material-symbols:manage-accounts-outline\",
+\"type\": \"M\", \"affix\": false, \"cache\": true, \"title\": \"{NAME}管理\", \"hidden\": false,
+\"copyright\": true, \"componentPath\": \"modules/\", \"componentSuffix\": \".vue\", \"breadcrumbEnable\": true}',
+'{ROUTE}', '{VUE_TEMPLATE}', '', 1, 0, 0, 1, now(), now(), '');
+
+SET @id := LAST_INSERT_ID();
+SET @level := CONCAT('{LEVEL}', ',', @id);
+
+INSERT INTO `{TABLE_NAME}`
+(`parent_id`, `name`, `meta`, `path`, `component`, `redirect`, `status`, `sort`, `created_by`, `updated_by`, `created_at`, `updated_at`, `remark`)
+ VALUES
+(@id, '{CODE}:index', '{\"i18n\": \"", \"type\": \"B\", \"title\": \"{NAME}列表\"}',
+'{ROUTE}', '{VUE_TEMPLATE}', '', 1, 0, 0, 1, now(), now(), '');
+
+{LOAD_MENU}

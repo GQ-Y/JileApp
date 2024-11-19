@@ -1,0 +1,21 @@
+
+
+    #[Post(
+        path: '{CONTROLLER_ROUTE}',
+        operationId: '{OPERATION_ID}Create',
+        summary: '创建{COMMENT}',
+        security: [['Bearer' => [], 'ApiKey' => []]],
+        tags: ['{COMMENT}'],
+    )]
+    #[RequestBody(
+        content: new JsonContent(ref: {REQUEST}::class, title: '创建{COMMENT}')
+    )]
+    #[PageResponse(instance: new Result())]
+    #[Permission(code: '{SAVE_PERMISSION}')]
+    public function create({REQUEST} $request): Result
+    {
+        $this->service->create(array_merge($request->post(), [
+            'created_by' => $this->currentUser->id(),
+        ]));
+        return $this->success();
+    }

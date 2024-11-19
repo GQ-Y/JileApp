@@ -1,0 +1,29 @@
+{
+    "name": "NEKGod/easy-generator",
+    "version": "1.2.0",
+    "type": "mixed",
+    "description": "MineAdmin 2.0 mapper 3.0 Code Generator",
+    "homepage": "https://www.mineadmin.com",
+    "author": [
+        {
+            "name": "MineAdmin&NEK"
+        }
+    ],
+    "composer": {
+        "require": {},
+        "psr-4": {
+            "Plugin\\NEK\\CodeGenerator\\": "src",
+            "Mine\\": "mine/mine-core/src/",
+            "Mine\\Generator\\": "mine/mine-generator/src/",
+            "Mine\\Helper\\": "mine/mine-helpers/src/",
+            "CodeHyperf\\Database\\": "CodeHyperf/database/"
+        },
+        "files": ["src/functions.php"],
+        "installScript": "Plugin\\NEK\\CodeGenerator\\InstallScript",
+        "uninstallScript": "Plugin\\NEK\\CodeGenerator\\UninstallScript",
+        "config": "Plugin\\NEK\\CodeGenerator\\ConfigProvider"
+    },
+    "package": {
+        "dependencies": []
+    }
+}

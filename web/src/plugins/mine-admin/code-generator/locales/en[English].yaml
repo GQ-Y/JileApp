@@ -1,0 +1,48 @@
+codeGenerator:
+  menu:
+    codeGenerator: Code generator
+    codeGeneratorEditor: Edit Generation Info
+  cgText:
+    mainTitle: Code Generator
+    subTitle: Provides CRUD Generation Capabilities
+    loadTable: Load Table
+    tableName: TableName
+    selectionAll: Whether to select the entire column
+  cols:
+    sort: Sort
+    name: Field Name
+    type: Physical Type
+    comment: Column Name/Form Name
+    required: Required
+    form: Form
+    list: List
+    query: Query
+    queryType: Query Type
+    component: Form Component
+    permission: Display Permission
+  op:
+    settingComponent: Setting
+    formPermission: Form Permission
+    columnPermission: Table Column Permission
+  component:
+    input: Input Box
+    inputNumber: Number Input Box
+    cascader: Cascader
+    rate: Rating
+    selectV2: Dropdown Selector (Virtual)
+    treeSelect: Tree Selector
+    switch: Switch
+    timePicker: Time Picker
+    datePicker: Date-Time Picker
+    colorPicker: Color Picker
+    slider: Slider
+    autocomplete: Autocomplete
+    transfer: Transfer Box
+    MaTree: Tree Component
+    remoteSelect: Remote Dropdown
+    dictRadio: Dictionary Radio
+    dictCheckbox: Dictionary Checkbox
+    dictSelect: Dictionary Dropdown
+    iconPicker: Icon Picker
+    uploadFile: File Upload
+    uploadImage: Image Upload

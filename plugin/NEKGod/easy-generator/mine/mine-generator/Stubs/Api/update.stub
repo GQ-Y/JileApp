@@ -1,0 +1,8 @@
+
+/**
+* 更新{BUSINESS_NAME}数据
+* @returns
+*/
+export function save(id: number, data: any): Promise<ResponseStruct<any>> {
+    return useHttp().put(`{REQUEST_ROUTE}/${id}`, data)
+}

@@ -1,0 +1,21 @@
+
+
+    #[Put(
+        path: '{CONTROLLER_ROUTE}/{id}',
+        operationId: '{OPERATION_ID}Edit',
+        summary: '编辑{COMMENT}',
+        security: [['Bearer' => [], 'ApiKey' => []]],
+        tags: ['{COMMENT}']
+    )]
+    #[RequestBody(
+        content: new JsonContent(ref: {REQUEST}::class, title: '编辑{COMMENT}')
+    )]
+    #[PageResponse(instance: new Result())]
+    #[Permission(code: '{UPDATE_PERMISSION}')]
+    public function save(int $id, {REQUEST} $request): Result
+    {
+        $this->service->updateById($id, array_merge($request->post(), [
+            'updated_by' => $this->currentUser->id(),
+        ]));
+        return $this->success();
+    }

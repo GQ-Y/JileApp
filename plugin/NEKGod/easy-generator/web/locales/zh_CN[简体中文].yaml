@@ -1,0 +1,7 @@
+menu:
+  codeGenerator: 代码生成器
+cgText:
+  mainTitle: 代码生成器
+  subTitle: 提供CRUD生成功能
+  loadTable: 载入数据表
+  tableName: 表名称

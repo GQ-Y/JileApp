@@ -1,0 +1,102 @@
+cms:
+  menu:
+    cms: Content Management
+    tag: Tag Management
+    snippets: Variable Management
+    categorie: Categorie Management
+    article: Article Management
+    advertisement: Advertisement Management
+    position: Position Management
+  tag:
+    subTitle: You can create tags here and manage them.
+    name: Tag Name
+    alias: Tag Alias
+    status: Status
+    enable: Enable
+    disable: Disable
+  snippets:
+    subTitle: You can create snippets here and manage them.
+    name: Name
+    code: Code
+    codeOnlyContainLetterAndUnderline: Code only contains letters and underscores
+    content: Content
+    description: Description
+    status: Status
+    enable: Enable
+    disable: Disable
+
+  position:
+    subTitle: You can create positions here and manage them.
+    name: Position Name
+    code: Position Code
+    description: Description
+    type: Type
+    status: Status
+    unknown: Unknown
+    text: Text
+    link: Link
+    image: Image
+    video: Video
+    audio: Audio
+    enable: Enable
+    disable: Disable
+    title: Title
+    content: Content
+    start_time: Start Time
+    end_time: End Time
+    sort: Sort
+
+  categorie:
+    subTitle: You can create categories here and manage them.
+    name: Name
+    alias: Alias
+    description: Description
+    parentId: Parent ID
+    sort: Sort
+    status: Status
+    enable: Enable
+    disable: Disable
+  article:
+    subTitle: You can create articles here and manage them.
+    title: Title
+    alias: Alias
+    categoryId: Category ID
+    status: Status
+    published: Published
+    publishedAt: Published At
+    thumbnail: Thumbnail
+    content: Content
+    confirmPublish: Confirm Publish
+    publishSuccess: Publish Success
+    confirmUnpublish: Confirm Unpublish
+    unpublishSuccess: Unpublish Success
+    draft: Draft
+    draftSuccess: Draft Success
+    unpublished: Unpublished
+    archived: Archived
+    summary: Summary
+  advertisement:
+    subTitle: You can create advertisements here and manage them.
+    title: Title
+    type: Type
+    url: URL
+    startTime: Start Time
+    endTime: End Time
+    sort: Sort
+    image: Image
+    video: Video
+    audio: Audio
+    content: Content
+    viewFile: View File
+    noFile: No File
+    status: Status
+    enable: Enable
+    disable: Disable
+    link: Link
+    text: Text
+form:
+  pleaseInput: Please input
+  id: ID
+  pleaseSelect: Please select
+
+

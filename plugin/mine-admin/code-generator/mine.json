@@ -1,0 +1,29 @@
+{
+    "name": "mine-admin/code-generator",
+    "version": "1.0.0",
+    "type": "mixed",
+    "description": "MineAdmin Code Generator",
+    "homepage": "https://www.mineadmin.com",
+    "author": [
+        {
+            "name": "MineAdmin"
+        }
+    ],
+    "composer": {
+        "require": {
+            "hyperf/view": "~3.1",
+            "hyperf/view-engine": "~3.1"
+        },
+        "psr-4": {
+            "Plugin\\MineAdmin\\CodeGenerator\\": "src"
+        },
+        "installScript": "Plugin\\MineAdmin\\CodeGenerator\\InstallScript",
+        "uninstallScript": "Plugin\\MineAdmin\\CodeGenerator\\UninstallScript",
+        "config": "Plugin\\MineAdmin\\CodeGenerator\\ConfigProvider"
+    },
+    "package": {
+        "dependencies": {
+            "vue3-ace-editor": "4.21.3"
+        }
+    }
+}

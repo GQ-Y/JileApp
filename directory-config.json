@@ -1,0 +1,977 @@
+{
+  "version": "1.0",
+  "directories": [
+    {
+      "path": "app",
+      "comment": "",
+      "children": [
+        {
+          "path": "app/Command",
+          "comment": "",
+          "children": []
+        },
+        {
+          "path": "app/Exception",
+          "comment": "",
+          "children": [
+            {
+              "path": "app/Exception/Handler",
+              "comment": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "path": "app/Http",
+          "comment": "",
+          "children": [
+            {
+              "path": "app/Http/Admin",
+              "comment": "",
+              "children": [
+                {
+                  "path": "app/Http/Admin/Controller",
+                  "comment": "",
+                  "children": [
+                    {
+                      "path": "app/Http/Admin/Controller/Logstash",
+                      "comment": "",
+                      "children": []
+                    },
+                    {
+                      "path": "app/Http/Admin/Controller/Permission",
+                      "comment": "",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "path": "app/Http/Admin/Middleware",
+                  "comment": "",
+                  "children": []
+                },
+                {
+                  "path": "app/Http/Admin/Request",
+                  "comment": "",
+                  "children": [
+                    {
+                      "path": "app/Http/Admin/Request/Permission",
+                      "comment": "",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "path": "app/Http/Admin/Subscriber",
+                  "comment": "",
+                  "children": [
+                    {
+                      "path": "app/Http/Admin/Subscriber/Logstash",
+                      "comment": "",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "path": "app/Http/Admin/Vo",
+                  "comment": "",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "path": "app/Http/Api",
+              "comment": "",
+              "children": [
+                {
+                  "path": "app/Http/Api/Controller",
+                  "comment": "",
+                  "children": [
+                    {
+                      "path": "app/Http/Api/Controller/V1",
+                      "comment": "",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "path": "app/Http/Api/Middleware",
+                  "comment": "",
+                  "children": []
+                },
+                {
+                  "path": "app/Http/Api/Request",
+                  "comment": "",
+                  "children": [
+                    {
+                      "path": "app/Http/Api/Request/V1",
+                      "comment": "",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "path": "app/Http/Common",
+              "comment": "",
+              "children": [
+                {
+                  "path": "app/Http/Common/Controller",
+                  "comment": "",
+                  "children": []
+                },
+                {
+                  "path": "app/Http/Common/Event",
+                  "comment": "",
+                  "children": []
+                },
+                {
+                  "path": "app/Http/Common/Middleware",
+                  "comment": "",
+                  "children": []
+                },
+                {
+                  "path": "app/Http/Common/Swagger",
+                  "comment": "",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "app/Model",
+          "comment": "",
+          "children": [
+            {
+              "path": "app/Model/Casts",
+              "comment": "",
+              "children": []
+            },
+            {
+              "path": "app/Model/Enums",
+              "comment": "",
+              "children": [
+                {
+                  "path": "app/Model/Enums/User",
+                  "comment": "",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "path": "app/Model/Permission",
+              "comment": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "path": "app/Repository",
+          "comment": "",
+          "children": [
+            {
+              "path": "app/Repository/Logstash",
+              "comment": "",
+              "children": []
+            },
+            {
+              "path": "app/Repository/Permission",
+              "comment": "",
+              "children": []
+            },
+            {
+              "path": "app/Repository/Traits",
+              "comment": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "path": "app/Schema",
+          "comment": "",
+          "children": []
+        },
+        {
+          "path": "app/Service",
+          "comment": "",
+          "children": [
+            {
+              "path": "app/Service/LogStash",
+              "comment": "",
+              "children": []
+            },
+            {
+              "path": "app/Service/Permission",
+              "comment": "",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "bin",
+      "comment": "",
+      "children": []
+    },
+    {
+      "path": "config",
+      "comment": "",
+      "children": [
+        {
+          "path": "config/autoload",
+          "comment": "",
+          "children": [
+            {
+              "path": "config/autoload/casbin",
+              "comment": "",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "databases",
+      "comment": "",
+      "children": [
+        {
+          "path": "databases/migrations",
+          "comment": "",
+          "children": []
+        },
+        {
+          "path": "databases/seeders",
+          "comment": "",
+          "children": []
+        }
+      ]
+    },
+    {
+      "path": "plugin",
+      "comment": "",
+      "children": [
+        {
+          "path": "plugin/mine-admin",
+          "comment": "",
+          "children": [
+            {
+              "path": "plugin/mine-admin/app-store",
+              "comment": "",
+              "children": [
+                {
+                  "path": "plugin/mine-admin/app-store/src",
+                  "comment": "",
+                  "children": [
+                    {
+                      "path": "plugin/mine-admin/app-store/src/Controller",
+                      "comment": "",
+                      "children": []
+                    },
+                    {
+                      "path": "plugin/mine-admin/app-store/src/Service",
+                      "comment": "",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "storage",
+      "comment": "",
+      "children": [
+        {
+          "path": "storage/languages",
+          "comment": "",
+          "children": [
+            {
+              "path": "storage/languages/en",
+              "comment": "",
+              "children": []
+            },
+            {
+              "path": "storage/languages/zh_CN",
+              "comment": "",
+              "children": []
+            },
+            {
+              "path": "storage/languages/zh_TW",
+              "comment": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "path": "storage/swagger",
+          "comment": "",
+          "children": []
+        }
+      ]
+    },
+    {
+      "path": "tests",
+      "comment": "",
+      "children": [
+        {
+          "path": "tests/Feature",
+          "comment": "",
+          "children": [
+            {
+              "path": "tests/Feature/Admin",
+              "comment": "",
+              "children": [
+                {
+                  "path": "tests/Feature/Admin/DataCenter",
+                  "comment": "",
+                  "children": []
+                },
+                {
+                  "path": "tests/Feature/Admin/Permission",
+                  "comment": "",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "path": "tests/Feature/Command",
+              "comment": "",
+              "children": []
+            },
+            {
+              "path": "tests/Feature/Repository",
+              "comment": "",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "web",
+      "comment": "",
+      "children": [
+        {
+          "path": "web/public",
+          "comment": "",
+          "children": [
+            {
+              "path": "web/public/font",
+              "comment": "",
+              "children": [
+                {
+                  "path": "web/public/font/alibaba-pu-hui-ti-3",
+                  "comment": "",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "web/scripts",
+          "comment": "",
+          "children": []
+        },
+        {
+          "path": "web/src",
+          "comment": "",
+          "children": [
+            {
+              "path": "web/src/assets",
+              "comment": "",
+              "children": [
+                {
+                  "path": "web/src/assets/icons",
+                  "comment": "",
+                  "children": []
+                },
+                {
+                  "path": "web/src/assets/images",
+                  "comment": "",
+                  "children": []
+                },
+                {
+                  "path": "web/src/assets/styles",
+                  "comment": "",
+                  "children": [
+                    {
+                      "path": "web/src/assets/styles/resources",
+                      "comment": "",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "path": "web/src/components",
+              "comment": "",
+              "children": [
+                {
+                  "path": "web/src/components/ma-auth",
+                  "comment": "",
+                  "children": []
+                },
+                {
+                  "path": "web/src/components/ma-dialog",
+                  "comment": "",
+                  "children": []
+                },
+                {
+                  "path": "web/src/components/ma-dict-picker",
+                  "comment": "",
+                  "children": []
+                },
+                {
+                  "path": "web/src/components/ma-icon-picker",
+                  "comment": "",
+                  "children": []
+                },
+                {
+                  "path": "web/src/components/ma-remote-select",
+                  "comment": "",
+                  "children": []
+                },
+                {
+                  "path": "web/src/components/ma-resource-picker",
+                  "comment": "",
+                  "children": []
+                },
+                {
+                  "path": "web/src/components/ma-svg-icon",
+                  "comment": "",
+                  "children": []
+                },
+                {
+                  "path": "web/src/components/ma-tree",
+                  "comment": "",
+                  "children": []
+                },
+                {
+                  "path": "web/src/components/ma-upload-file",
+                  "comment": "",
+                  "children": []
+                },
+                {
+                  "path": "web/src/components/ma-upload-image",
+                  "comment": "",
+                  "children": []
+                },
+                {
+                  "path": "web/src/components/ma-verify-code",
+                  "comment": "",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "path": "web/src/directives",
+              "comment": "",
+              "children": [
+                {
+                  "path": "web/src/directives/copy",
+                  "comment": "",
+                  "children": []
+                },
+                {
+                  "path": "web/src/directives/permission",
+                  "comment": "",
+                  "children": [
+                    {
+                      "path": "web/src/directives/permission/auth",
+                      "comment": "",
+                      "children": []
+                    },
+                    {
+                      "path": "web/src/directives/permission/role",
+                      "comment": "",
+                      "children": []
+                    },
+                    {
+                      "path": "web/src/directives/permission/user",
+                      "comment": "",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "path": "web/src/hooks",
+              "comment": "",
+              "children": [
+                {
+                  "path": "web/src/hooks/auto-imports",
+                  "comment": "",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "path": "web/src/iconify",
+              "comment": "",
+              "children": []
+            },
+            {
+              "path": "web/src/layouts",
+              "comment": "",
+              "children": [
+                {
+                  "path": "web/src/layouts/components",
+                  "comment": "",
+                  "children": [
+                    {
+                      "path": "web/src/layouts/components/back-top",
+                      "comment": "",
+                      "children": []
+                    },
+                    {
+                      "path": "web/src/layouts/components/bars",
+                      "comment": "",
+                      "children": [
+                        {
+                          "path": "web/src/layouts/components/bars/breadcrumb",
+                          "comment": "",
+                          "children": []
+                        },
+                        {
+                          "path": "web/src/layouts/components/bars/tabbar",
+                          "comment": "",
+                          "children": []
+                        },
+                        {
+                          "path": "web/src/layouts/components/bars/toolbar",
+                          "comment": "",
+                          "children": [
+                            {
+                              "path": "web/src/layouts/components/bars/toolbar/components",
+                              "comment": "",
+                              "children": [
+                                {
+                                  "path": "web/src/layouts/components/bars/toolbar/components/dropdownMenuComponents",
+                                  "comment": "",
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "path": "web/src/layouts/components/footer",
+                      "comment": "",
+                      "children": []
+                    },
+                    {
+                      "path": "web/src/layouts/components/header",
+                      "comment": "",
+                      "children": []
+                    },
+                    {
+                      "path": "web/src/layouts/components/iframe",
+                      "comment": "",
+                      "children": []
+                    },
+                    {
+                      "path": "web/src/layouts/components/logo",
+                      "comment": "",
+                      "children": []
+                    },
+                    {
+                      "path": "web/src/layouts/components/main-aside",
+                      "comment": "",
+                      "children": []
+                    },
+                    {
+                      "path": "web/src/layouts/components/menu",
+                      "comment": "",
+                      "children": []
+                    },
+                    {
+                      "path": "web/src/layouts/components/search-panel",
+                      "comment": "",
+                      "children": []
+                    },
+                    {
+                      "path": "web/src/layouts/components/sub-aside",
+                      "comment": "",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "path": "web/src/layouts/style",
+                  "comment": "",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "path": "web/src/locales",
+              "comment": "",
+              "children": []
+            },
+            {
+              "path": "web/src/modules",
+              "comment": "",
+              "children": [
+                {
+                  "path": "web/src/modules/base",
+                  "comment": "",
+                  "children": [
+                    {
+                      "path": "web/src/modules/base/api",
+                      "comment": "",
+                      "children": []
+                    },
+                    {
+                      "path": "web/src/modules/base/locales",
+                      "comment": "",
+                      "children": []
+                    },
+                    {
+                      "path": "web/src/modules/base/views",
+                      "comment": "",
+                      "children": [
+                        {
+                          "path": "web/src/modules/base/views/dashboard",
+                          "comment": "",
+                          "children": [
+                            {
+                              "path": "web/src/modules/base/views/dashboard/components",
+                              "comment": "",
+                              "children": [
+                                {
+                                  "path": "web/src/modules/base/views/dashboard/components/analysis",
+                                  "comment": "",
+                                  "children": []
+                                },
+                                {
+                                  "path": "web/src/modules/base/views/dashboard/components/report",
+                                  "comment": "",
+                                  "children": []
+                                },
+                                {
+                                  "path": "web/src/modules/base/views/dashboard/components/workbench",
+                                  "comment": "",
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "path": "web/src/modules/base/views/dashboard/datas",
+                              "comment": "",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "path": "web/src/modules/base/views/dataCenter",
+                          "comment": "",
+                          "children": [
+                            {
+                              "path": "web/src/modules/base/views/dataCenter/attachment",
+                              "comment": "",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "path": "web/src/modules/base/views/log",
+                          "comment": "",
+                          "children": [
+                            {
+                              "path": "web/src/modules/base/views/log/userLoginLogData",
+                              "comment": "",
+                              "children": []
+                            },
+                            {
+                              "path": "web/src/modules/base/views/log/userOperationLogData",
+                              "comment": "",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "path": "web/src/modules/base/views/login",
+                          "comment": "",
+                          "children": [
+                            {
+                              "path": "web/src/modules/base/views/login/components",
+                              "comment": "",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "path": "web/src/modules/base/views/permission",
+                          "comment": "",
+                          "children": [
+                            {
+                              "path": "web/src/modules/base/views/permission/menu",
+                              "comment": "",
+                              "children": []
+                            },
+                            {
+                              "path": "web/src/modules/base/views/permission/role",
+                              "comment": "",
+                              "children": [
+                                {
+                                  "path": "web/src/modules/base/views/permission/role/data",
+                                  "comment": "",
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "path": "web/src/modules/base/views/permission/user",
+                              "comment": "",
+                              "children": [
+                                {
+                                  "path": "web/src/modules/base/views/permission/user/data",
+                                  "comment": "",
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "path": "web/src/modules/base/views/uc",
+                          "comment": "",
+                          "children": [
+                            {
+                              "path": "web/src/modules/base/views/uc/components",
+                              "comment": "",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "path": "web/src/modules/base/views/welcome",
+                          "comment": "",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "path": "web/src/plugins",
+              "comment": "",
+              "children": [
+                {
+                  "path": "web/src/plugins/mine-admin",
+                  "comment": "",
+                  "children": [
+                    {
+                      "path": "web/src/plugins/mine-admin/app-store",
+                      "comment": "",
+                      "children": [
+                        {
+                          "path": "web/src/plugins/mine-admin/app-store/api",
+                          "comment": "",
+                          "children": []
+                        },
+                        {
+                          "path": "web/src/plugins/mine-admin/app-store/style",
+                          "comment": "",
+                          "children": []
+                        },
+                        {
+                          "path": "web/src/plugins/mine-admin/app-store/utils",
+                          "comment": "",
+                          "children": []
+                        },
+                        {
+                          "path": "web/src/plugins/mine-admin/app-store/views",
+                          "comment": "",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "path": "web/src/plugins/mine-admin/basic-ui",
+                      "comment": "",
+                      "children": [
+                        {
+                          "path": "web/src/plugins/mine-admin/basic-ui/components",
+                          "comment": "",
+                          "children": [
+                            {
+                              "path": "web/src/plugins/mine-admin/basic-ui/components/button",
+                              "comment": "",
+                              "children": []
+                            },
+                            {
+                              "path": "web/src/plugins/mine-admin/basic-ui/components/drawer",
+                              "comment": "",
+                              "children": []
+                            },
+                            {
+                              "path": "web/src/plugins/mine-admin/basic-ui/components/dropdown",
+                              "comment": "",
+                              "children": []
+                            },
+                            {
+                              "path": "web/src/plugins/mine-admin/basic-ui/components/input",
+                              "comment": "",
+                              "children": []
+                            },
+                            {
+                              "path": "web/src/plugins/mine-admin/basic-ui/components/modal",
+                              "comment": "",
+                              "children": []
+                            },
+                            {
+                              "path": "web/src/plugins/mine-admin/basic-ui/components/switch",
+                              "comment": "",
+                              "children": []
+                            },
+                            {
+                              "path": "web/src/plugins/mine-admin/basic-ui/components/tab",
+                              "comment": "",
+                              "children": []
+                            },
+                            {
+                              "path": "web/src/plugins/mine-admin/basic-ui/components/textarea",
+                              "comment": "",
+                              "children": []
+                            },
+                            {
+                              "path": "web/src/plugins/mine-admin/basic-ui/components/tooltip",
+                              "comment": "",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "path": "web/src/plugins/mine-admin/basic-ui/utils",
+                          "comment": "",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "path": "web/src/plugins/mine-admin/demo",
+                      "comment": "",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "path": "web/src/provider",
+              "comment": "",
+              "children": [
+                {
+                  "path": "web/src/provider/dictionary",
+                  "comment": "",
+                  "children": [
+                    {
+                      "path": "web/src/provider/dictionary/data",
+                      "comment": "",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "path": "web/src/provider/echarts",
+                  "comment": "",
+                  "children": [
+                    {
+                      "path": "web/src/provider/echarts/themes",
+                      "comment": "",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "path": "web/src/provider/mine-core",
+                  "comment": "",
+                  "children": []
+                },
+                {
+                  "path": "web/src/provider/plugins",
+                  "comment": "",
+                  "children": [
+                    {
+                      "path": "web/src/provider/plugins/config",
+                      "comment": "",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "path": "web/src/provider/settings",
+                  "comment": "",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "path": "web/src/router",
+              "comment": "",
+              "children": [
+                {
+                  "path": "web/src/router/static-routes",
+                  "comment": "",
+                  "children": [
+                    {
+                      "path": "web/src/router/static-routes/ucChildren",
+                      "comment": "",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "path": "web/src/store",
+              "comment": "",
+              "children": [
+                {
+                  "path": "web/src/store/modules",
+                  "comment": "",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "path": "web/src/utils",
+              "comment": "",
+              "children": [
+                {
+                  "path": "web/src/utils/permission",
+                  "comment": "",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "web/types",
+          "comment": "",
+          "children": []
+        },
+        {
+          "path": "web/vite",
+          "comment": "",
+          "children": []
+        }
+      ]
+    }
+  ]
+}

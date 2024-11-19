@@ -1,0 +1,8 @@
+
+/**
+* 添加{BUSINESS_NAME}
+* @returns
+*/
+export function create(data: any): Promise<ResponseStruct<any>> {
+  return useHttp().post('{REQUEST_ROUTE}', data)
+}
