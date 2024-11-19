@@ -13,7 +13,7 @@ use Hyperf\Contract\StdoutLoggerInterface;
 use Psr\Log\LogLevel;
 
 return [
-    'app_name' => env('APP_NAME', 'MineAdmin'),
+    'app_name' => env('APP_NAME', 'JileApp'),
     'scan_cacheable' => ! env('APP_DEBUG', false),
     'debug' => env('APP_DEBUG', false),
     StdoutLoggerInterface::class => [
