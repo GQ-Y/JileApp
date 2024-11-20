@@ -11,7 +11,8 @@
     "composer": {
         "require": [],
         "psr-4": {
-            "Plugin\\Cms\\": "src"
+            "Plugin\\Cms\\": "src",
+            "Plugin\\Cms\\Database\\": "Database/"
         },
         "installScript": "Plugin\\Cms\\InstallScript",
         "uninstallScript": "Plugin\\Cms\\UninstallScript",

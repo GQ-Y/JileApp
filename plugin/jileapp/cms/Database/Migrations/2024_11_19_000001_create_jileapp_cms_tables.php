@@ -37,7 +37,7 @@ return new class extends Migration
             $table->string('code', 50)->unique()->comment('调用代码');
             $table->text('content')->nullable()->comment('内容:文本输入框');
             $table->string('description')->nullable()->comment('描述');
-            $table->tinyInteger('status')->default(1)->comment('状态:1=在线,2=离线');
+            $table->tinyInteger('status')->default(1)->comment('状态:1=启用,2=停用');
             $table->unsignedBigInteger('created_by')->nullable()->comment('创建者');
             $table->unsignedBigInteger('updated_by')->nullable()->comment('更新者');
             $table->timestamps();
