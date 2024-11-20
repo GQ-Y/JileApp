@@ -34,9 +34,8 @@ const pluginConfig: Plugin.PluginConfig = {
     logout: () => {},
     // 在请求用户信息后被调用，传入用户权限、角色等数据。
     getUserInfo: (userInfo) => {
-        console.log(userInfo)
+      console.log(userInfo)
     },
-    
   },
   views: [
     {
@@ -46,6 +45,7 @@ const pluginConfig: Plugin.PluginConfig = {
         title: '内容管理',
         i18n: 'cms.menu.cms',
         icon: 'ep:scale-to-original',
+        badge: () => 'New',
         type: 'M',
         hidden: false,
         breadcrumbEnable: true,
@@ -53,6 +53,21 @@ const pluginConfig: Plugin.PluginConfig = {
         cache: true,
       },
       children: [
+        {
+          name: 'cms:dashboard',
+          path: '/cms/dashboard',
+          meta: {
+            title: '总览',
+            i18n: 'cms.menu.dashboard',
+            icon: 'mdi:finance',
+            type: 'M',
+            hidden: false,
+            breadcrumbEnable: true,
+            copyright: true,
+            cache: true,
+          },
+          component: () => import(('./views/dashboard/report.vue')),
+        },
         {
           name: 'tag:jileappCmsTag',
           path: '/tag/jileappCmsTag',

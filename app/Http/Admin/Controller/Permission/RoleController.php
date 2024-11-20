@@ -10,7 +10,7 @@ declare(strict_types=1);
  * @license  https://github.com/mineadmin/MineAdmin/blob/master/LICENSE
  */
 
-namespace Plugin\Cms\Controller\Permission;
+namespace App\Http\Admin\Controller\Permission;
 
 use App\Exception\BusinessException;
 use App\Http\Admin\Controller\AbstractController;

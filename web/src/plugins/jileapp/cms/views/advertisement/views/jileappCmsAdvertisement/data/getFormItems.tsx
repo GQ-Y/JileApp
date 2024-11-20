@@ -11,8 +11,9 @@ import type { MaFormItem } from '@mineadmin/form'
 import MaDictRadio from '@/components/ma-dict-picker/ma-dict-radio.vue'
 import MaUploadImage from '@/components/ma-upload-image/index.vue'
 import MaUploadFile from '@/components/ma-upload-file/index.vue'
-import { concat } from 'lodash-es'
+import MaRemoteSelect from '@/components/ma-remote-select/index.vue'
 import { jileappCmsAdvertisementTypeRadioDictData } from './common.tsx'
+import { concat } from 'lodash-es'
 
 export default function getFormItems(formType: 'add' | 'edit' = 'add', t: any, model: any): MaFormItem[] {
   if (formType === 'add') {
@@ -28,7 +29,8 @@ export default function getFormItems(formType: 'add' | 'edit' = 'add', t: any, m
         ],
       },
     },
-    { label: t('cms.advertisement.type'), prop: 'type_radio', render: () => MaDictRadio, renderProps: { placeholder: t('form.pleaseInput', { msg: t('cms.advertisement.type') }), data: jileappCmsAdvertisementTypeRadioDictData(t), modelValue: 1 } },
+    { label: t('cms.advertisement.type'), prop: 'type_radio', render: () => MaDictRadio, renderProps: { placeholder: t('form.pleaseInput', { msg: t('cms.advertisement.type') }), data: jileappCmsAdvertisementTypeRadioDictData(t) } },
+    { label: t('cms.advertisement.position'), prop: 'position_id', render: () => MaRemoteSelect, renderProps: { placeholder: t('form.pleaseInput', { msg: t('cms.advertisement.position') }), multiple: false, url: '/position/jileappCmsAdPosition/list', axiosConfig: { method: 'get', params: { pageSize: 9999 } }, dataHandle: (response: any) => { return (response.data.list || []).map((item: any) => ({ label: item.name_title || '', value: item.id })).filter((item: any) => item.label) } } },
     { label: t('cms.advertisement.content'), prop: 'textarea', render: 'mention', renderProps: { placeholder: t('form.pleaseInput', { msg: t('cms.advertisement.content') }), type: 'textarea' } },
     { label: t('cms.advertisement.image'), prop: 'content_image', render: () => MaUploadImage, renderProps: { placeholder: t('form.pleaseInput', { msg: t('cms.advertisement.image') }) }, multiple: false },
     { label: t('cms.advertisement.video'), prop: 'video_file', render: () => MaUploadFile, renderProps: { placeholder: t('form.pleaseInput', { msg: t('cms.advertisement.video') }) }, multiple: false },
@@ -37,5 +39,5 @@ export default function getFormItems(formType: 'add' | 'edit' = 'add', t: any, m
     { label: t('cms.advertisement.endTime'), prop: 'end_time', render: 'DatePicker', renderProps: { placeholder: t('form.pleaseInput', { msg: t('cms.advertisement.endTime') }), valueFormat: 'YYYY-MM-DD HH:mm:ss', format: 'YYYY-MM-DD HH:mm:ss' }, mode: 'date', showTime: true },
     { label: t('cms.advertisement.status'), prop: 'status_switch', render: 'switch', renderProps: { placeholder: t('form.pleaseInput', { msg: t('cms.advertisement.status') }) } },
     { label: t('cms.advertisement.sort'), prop: 'sort', render: 'input', renderProps: { placeholder: t('form.pleaseInput', { msg: t('cms.advertisement.sort') }) } },
-  ]);
+  ])
 }

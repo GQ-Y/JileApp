@@ -8,7 +8,7 @@
  * @Link   https://github.com/mineadmin
  */
 
-export function jileappCmsAdvertisementTypeRadioDictData(t) {
+export function jileappCmsAdvertisementTypeRadioDictData(t: any) {
   return [
     { label: t('cms.advertisement.text'), value: 1 },
     { label: t('cms.advertisement.link'), value: 2 },
@@ -16,7 +16,7 @@ export function jileappCmsAdvertisementTypeRadioDictData(t) {
     { label: t('cms.advertisement.video'), value: 4 },
   ]
 }
-export function jileappCmsAdvertisementStatusDictData(t) {
+export function jileappCmsAdvertisementStatusDictData(t: any) {
   return [
     { label: t('cms.advertisement.enable'), value: '1' },
     { label: t('cms.advertisement.disable'), value: '0' },

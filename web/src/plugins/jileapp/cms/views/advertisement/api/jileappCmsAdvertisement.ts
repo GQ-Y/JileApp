@@ -42,3 +42,11 @@ export function save(id: number, data: any): Promise<ResponseStruct<any>> {
 export function deleteByIds(ids: number[]): Promise<ResponseStruct<null>> {
   return useHttp().delete('advertisement/jileappCmsAdvertisement', { data: ids })
 }
+
+/**
+* 获取JileappCmsAdPosition分页列表
+* @returns
+*/
+export function getPositionList(data: any): Promise<ResponseStruct<any>> {
+  return useHttp().get('position/jileappCmsAdPosition/list', { params: data })
+}

@@ -1,13 +1,13 @@
 <?php
+
 declare(strict_types=1);
 /**
- * MineAdmin is committed to providing solutions for quickly building web applications
- * Please view the LICENSE file that was distributed with this source code,
- * For the full copyright and license information.
- * Thank you very much for using MineAdmin.
+ * This file is part of MineAdmin.
  *
- * @Author X.Mo<root@imoi.cn>
- * @Link   https://gitee.com/xmo/MineAdmin
+ * @link     https://www.mineadmin.com
+ * @document https://doc.mineadmin.com
+ * @contact  root@imoi.cn
+ * @license  https://github.com/mineadmin/MineAdmin/blob/master/LICENSE
  */
 
 namespace Plugin\Cms\Controller\Advertisement;
@@ -34,24 +34,21 @@ use Plugin\Cms\Service\Advertisement\JileappCmsAdvertisementService;
 
 /**
  * 广告表控制器
- * Class JileappCmsAdvertisementController
+ * Class JileappCmsAdvertisementController.
  */
 #[HyperfServer(name: 'http')]
 #[Middleware(middleware: AccessTokenMiddleware::class, priority: 100)]
 #[Middleware(middleware: PermissionMiddleware::class, priority: 99)]
 final class JileappCmsAdvertisementController extends AdminAbstractController
 {
-
-     /**
+    /**
      * 业务处理服务
-     * JileappCmsAdvertisementService
+     * JileappCmsAdvertisementService.
      */
     public function __construct(
         protected readonly JileappCmsAdvertisementService $service,
         protected readonly CurrentUser $currentUser
     ) {}
-
-    
 
     #[Get(
         path: '/advertisement/jileappCmsAdvertisement/list',
@@ -65,10 +62,8 @@ final class JileappCmsAdvertisementController extends AdminAbstractController
     public function page(Request $request): Result
     {
         return $this->success(data: $this->service->page(array_merge([
-
         ], $request->all()), (int) $request->query('page'), (int) $request->query('page_size')));
     }
-
 
     #[Post(
         path: '/advertisement/jileappCmsAdvertisement',
@@ -121,8 +116,7 @@ final class JileappCmsAdvertisementController extends AdminAbstractController
     #[Permission(code: 'advertisement:jileappCmsAdvertisement:delete')]
     public function delete(): Result
     {
-      $this->service->deleteById($this->getRequest()->all(), false);
-      return $this->success();
+        $this->service->deleteById($this->getRequest()->all(), false);
+        return $this->success();
     }
-
 }

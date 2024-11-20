@@ -7,6 +7,7 @@ cms:
     article: 文章管理
     advertisement: 廣告管理
     position: 廣告位管理
+    dashboard: 總覽
   tag:
     subTitle: 你可在此處創建標籤，並進行標籤管理
     name: 標籤名稱
@@ -45,8 +46,10 @@ cms:
     audio: 音頻
     width: 寬度
     height: 高度
+    codeOnlyContainLetterAndUnderline: 廣告位代碼只能包含英文字母和下劃線
   categorie:
     subTitle: 你可在此處創建分類，並進行分類管理
+    id: ID
     name: 分類名稱
     alias: 分類別名
     description: 分類描述
@@ -93,6 +96,8 @@ cms:
     disable: 禁用
     link: 鏈接
     text: 文字
+    position: 廣告位
+    unknown: 未知
 form:
   pleaseInput: 請輸入
   id: ID

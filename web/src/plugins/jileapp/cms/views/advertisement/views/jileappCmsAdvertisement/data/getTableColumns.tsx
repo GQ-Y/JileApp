@@ -17,10 +17,22 @@ import { ResultCode } from '@/utils/ResultCode.ts'
 import hasAuth from '@/utils/permission/hasAuth.ts'
 import { keyBy, get } from 'lodash-es'
 import { deleteByIds } from '../../../api/jileappCmsAdvertisement.ts'
+import { page } from '../../../../position/api/jileappCmsAdPosition.ts'
 import { jileappCmsAdvertisementStatusDictData, jileappCmsAdvertisementTypeRadioDictData } from './common.tsx'
+import { ref } from 'vue'
 
 export default function getTableColumns(dialog: UseDialogExpose, formRef: any, t: any): MaProTableColumns[] {
+  const positionMap = ref({})
+  const initPositionMap = async () => {
+    const res = await page({})
+    if (res.code === ResultCode.SUCCESS) {
+      positionMap.value = keyBy(res.data.list, 'id')
+    }
+  }
+  initPositionMap()
+
   const jileappCmsAdvertisementTypeRadioMap = keyBy(jileappCmsAdvertisementTypeRadioDictData(t), 'value')
+  const jileappCmsAdvertisementStatusMap = keyBy(jileappCmsAdvertisementStatusDictData(t), 'value')
   const msg = useMessage()
   return [
     { type: 'selection', showOverflowTooltip: false, label: () => t('crud.selection') },
@@ -34,6 +46,9 @@ export default function getTableColumns(dialog: UseDialogExpose, formRef: any, t
         )
       },
     },
+    { label: t('cms.advertisement.position'), prop: 'position_id', cellRender: ({ row }) => {
+      return get(positionMap.value, `${row.position_id}.name_title`, t('cms.advertisement.unknown'))
+    } },
     { label: t('cms.advertisement.content'), prop: 'textarea' },
     {
       label: t('cms.advertisement.image'), prop: 'content_image', multiple: false, cellRender: ({ row }) => {
@@ -41,10 +56,10 @@ export default function getTableColumns(dialog: UseDialogExpose, formRef: any, t
           <el-popover>
             {{
               reference: () => {
-                return (<el-avatar src={row.content_image} />)
+                return (<el-avatar src={row.content_image || defaultAvatar} />)
               },
               default: () => {
-                return (<el-image src={row.content_image}></el-image>)
+                return (<el-image src={row.content_image || defaultAvatar}></el-image>)
               },
             }}
           </el-popover>
@@ -66,7 +81,7 @@ export default function getTableColumns(dialog: UseDialogExpose, formRef: any, t
     { label: t('cms.advertisement.status'), prop: 'status_switch', cellRender: ({ row }) => {
       return (
         <ElTag type='primary'>
-          { jileappCmsAdvertisementStatusDictData.find((item: any) => item.value === row.status_switch)?.label }
+          {get(jileappCmsAdvertisementStatusMap, row.status_switch, { label: t('cms.advertisement.unknown') }).label}
         </ElTag>
       )
     },

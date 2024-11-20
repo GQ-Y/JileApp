@@ -15,6 +15,7 @@ import { jileappCmsAdPositionTypeRadioDictData } from './common.tsx'
 export default function getFormItems(formType: 'add' | 'edit' = 'add', t: any, model: any): MaFormItem[] {
   if (formType === 'add') {
     model.status_switch = true
+    model.type_radio = 1
   }
 
   return concat([
@@ -34,7 +35,7 @@ export default function getFormItems(formType: 'add' | 'edit' = 'add', t: any, m
       },
     },
     { label: t('cms.position.description'), prop: 'description_text', render: 'input', renderProps: { placeholder: t('form.pleaseInput', { msg: t('cms.position.description') }) } },
-    { label: t('cms.position.type'), prop: 'type_radio', render: () => MaDictRadio, renderProps: { placeholder: t('form.pleaseInput', { msg: t('cms.position.type') }), data: jileappCmsAdPositionTypeRadioDictData(t), modelValue: 1 } },
+    { label: t('cms.position.type'), prop: 'type_radio', render: () => MaDictRadio, renderProps: { placeholder: t('form.pleaseInput', { msg: t('cms.position.type') }), data: jileappCmsAdPositionTypeRadioDictData(t) } },
     { label: t('cms.position.width'), prop: 'width_title', render: 'input', renderProps: { placeholder: t('form.pleaseInput', { msg: t('cms.position.width') }) } },
     { label: t('cms.position.height'), prop: 'height_title', render: 'input', renderProps: { placeholder: t('form.pleaseInput', { msg: t('cms.position.height') }) } },
     { label: t('cms.position.status'), prop: 'status_switch', render: 'switch', renderProps: { placeholder: t('form.pleaseInput', { msg: t('cms.position.status') }) } },

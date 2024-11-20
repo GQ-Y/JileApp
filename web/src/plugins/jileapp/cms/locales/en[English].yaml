@@ -7,6 +7,7 @@ cms:
     article: Article Management
     advertisement: Advertisement Management
     position: Position Management
+    dashboard: Overview
   tag:
     subTitle: You can create tags here and manage them.
     name: Tag Name
@@ -45,9 +46,11 @@ cms:
     start_time: Start Time
     end_time: End Time
     sort: Sort
+    codeOnlyContainLetterAndUnderline: Code only contains letters and underscores
 
   categorie:
     subTitle: You can create categories here and manage them.
+    id: ID
     name: Name
     alias: Alias
     description: Description
@@ -94,6 +97,8 @@ cms:
     disable: Disable
     link: Link
     text: Text
+    position: Position
+    unknown: Unknown
 form:
   pleaseInput: Please input
   id: ID

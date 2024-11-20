@@ -10,7 +10,7 @@ declare(strict_types=1);
  * @Link   https://gitee.com/xmo/MineAdmin
  */
 
-namespace Plugin\Cms\Controller;
+namespace Plugin\Cms\Controller\Article;
 
 use App\Http\Admin\Controller\AbstractController as AdminAbstractController;
 use App\Http\Admin\Middleware\PermissionMiddleware;

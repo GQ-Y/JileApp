@@ -23,6 +23,7 @@ export default function getTableColumns(dialog: UseDialogExpose, formRef: any, t
 
   return [
     { type: 'selection', showOverflowTooltip: false, label: () => t('crud.selection') },
+    { label: t('cms.categorie.id'), prop: 'id' },
     { label: t('cms.categorie.name'), prop: 'name_title' },
     { label: t('cms.categorie.alias'), prop: 'slug_title' },
     { label: t('cms.categorie.description'), prop: 'description_text' },

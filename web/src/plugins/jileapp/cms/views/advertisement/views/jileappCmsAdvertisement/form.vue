@@ -61,7 +61,7 @@ function edit(): Promise<any> {
 defineExpose({
   add,
   edit,
-  maForm: formRef
+  maForm: formRef,
 })
 </script>
 

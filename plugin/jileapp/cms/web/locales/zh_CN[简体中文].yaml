@@ -7,6 +7,7 @@ cms:
     article: 文章管理
     advertisement: 广告管理
     position: 广告位管理
+    dashboard: 总览
   tag:
     subTitle: 你可在此处创建标签，并进行标签管理
     name: 标签名称
@@ -45,8 +46,10 @@ cms:
     audio: 音频
     width: 宽度
     height: 高度
+    codeOnlyContainLetterAndUnderline: 广告位代码只能包含英文字母和下划线
   categorie:
     subTitle: 你可在此处创建分类，并进行分类管理
+    id: ID
     name: 分类名称
     alias: 分类别名
     description: 分类描述
@@ -93,6 +96,8 @@ cms:
     disable: 禁用
     link: 链接
     text: 文字
+    position: 广告位
+    unknown: 未知
 form:
   pleaseInput: 请输入
   id: ID
