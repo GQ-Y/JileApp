@@ -22,7 +22,7 @@ use Plugin\Cms\Model\Categorie\JileappCmsCategorie;
 class JileappCmsCategorieRepository extends IRepository
 {
    public function __construct(
-        protected readonly JileappCmsCategorie $model
+       public readonly JileappCmsCategorie $model
     ) {}
 
     /**
@@ -105,4 +105,6 @@ class JileappCmsCategorieRepository extends IRepository
 
         return $query;
     }
+
+
 }

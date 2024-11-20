@@ -27,7 +27,7 @@ export default function getTableColumns(dialog: UseDialogExpose, formRef: any, t
     { label: t('cms.categorie.name'), prop: 'name_title' },
     { label: t('cms.categorie.alias'), prop: 'slug_title' },
     { label: t('cms.categorie.description'), prop: 'description_text' },
-    { label: t('cms.categorie.parentId'), prop: 'parent_id' },
+    { label: t('cms.categorie.parentName'), prop: 'parent_name' },
     { label: t('cms.categorie.sort'), prop: 'sort' },
     {
       label: t('cms.categorie.status'), prop: 'status_switch', cellRender: ({ row }) => {

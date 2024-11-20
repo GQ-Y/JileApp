@@ -59,6 +59,7 @@ cms:
     status: 状态
     enable: 启用
     disable: 禁用
+    parentName: 父分类名称
   article:
     subTitle: 你可在此处创建文章，并进行文章管理
     title: 文章标题
@@ -78,6 +79,10 @@ cms:
     unpublished: 未发布
     archived: 已归档
     summary: 摘要
+    tag: 标签
+    categorie: 分类
+    tags: 标签
+    categoryName: 分类名称
   advertisement:
     subTitle: 你可在此处创建广告，并进行广告管理
     title: 广告标题

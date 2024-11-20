@@ -65,7 +65,7 @@ final class JileappCmsCategorieController extends AdminAbstractController
     public function page(Request $request): Result
     {
         return $this->success(data: $this->service->page(array_merge([
-
+            'with' => ['children'],
         ], $request->all()), (int) $request->query('page'), (int) $request->query('page_size')));
     }
 

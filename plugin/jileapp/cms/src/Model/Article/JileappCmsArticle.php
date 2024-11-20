@@ -6,7 +6,9 @@ namespace Plugin\Cms\Model\Article;
 
 use Hyperf\Database\Model\SoftDeletes;
 use Hyperf\DbConnection\Model\Model;
-
+use Plugin\Cms\Model\Tag\JileappCmsTag;
+use Plugin\Cms\Model\ArticleTag\JileappCmsArticleTag;
+use Plugin\Cms\Model\Category\JileappCmsCategory;
 /**
  * @property int $id 
  * @property string $title_title 文章标题
@@ -40,4 +42,25 @@ class JileappCmsArticle extends Model
      * The attributes that should be cast to native types.
      */
     protected array $casts = ['id' => 'integer', 'category_id' => 'integer', 'status' => 'integer', 'created_by' => 'integer', 'updated_by' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+
+    /**
+     * 通过中间表获取标签
+     */
+    public function tags()
+    {
+        return $this->belongsToMany(
+            JileappCmsTag::class,
+            JileappCmsArticleTag::class,
+            'article_id',
+            'tag_id'
+        );
+    }
+
+    /**
+     * 通过分类ID获取分类名称
+     */
+    public function categoryName()
+    {
+        return $this->belongsTo(JileappCmsCategory::class, 'category_id', 'id')->value('name_title');
+    }
 }

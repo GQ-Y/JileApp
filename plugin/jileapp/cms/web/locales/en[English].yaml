@@ -60,6 +60,7 @@ cms:
     status: Status
     enable: Enable
     disable: Disable
+    parentName: Parent Name
   article:
     subTitle: You can create articles here and manage them.
     title: Title
@@ -79,6 +80,10 @@ cms:
     unpublished: Unpublished
     archived: Archived
     summary: Summary
+    tag: Tag
+    categorie: Categorie
+    tags: Tags
+    categoryName: Category Name
   advertisement:
     subTitle: You can create advertisements here and manage them.
     title: Title

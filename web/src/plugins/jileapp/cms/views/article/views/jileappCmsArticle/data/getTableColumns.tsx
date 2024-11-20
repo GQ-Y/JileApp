@@ -31,7 +31,6 @@ export default function getTableColumns(dialog: UseDialogExpose, formRef: any, t
       label: t('cms.article.thumbnail'), prop: 'thumbnail_image', multiple: false, cellRender: ({ row }) => {
         return (
           <el-popover>
-          >
             {{
               reference: () => {
                 return (<el-avatar src={row.thumbnail_image} />)
@@ -44,7 +43,12 @@ export default function getTableColumns(dialog: UseDialogExpose, formRef: any, t
         )
       },
     },
-    { label: t('cms.article.categoryId'), prop: 'category_id' },
+    { label: t('cms.article.categoryName'), prop: 'categoryName' },
+    { label: t('cms.article.tags'), prop: 'tags', cellRender: ({ row }) => {
+      return row.tags.map((tag: any) => (
+        <ElTag type='primary'>{tag.name_title}</ElTag>
+      ))
+    } },
     {
       label: t('cms.article.status'), prop: 'status', cellRender: ({ row }) => {
         return (
