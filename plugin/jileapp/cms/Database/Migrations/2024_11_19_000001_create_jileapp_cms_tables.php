@@ -13,12 +13,11 @@ use Hyperf\Database\Migrations\Migration;
 use Hyperf\Database\Schema\Blueprint;
 use Hyperf\Database\Schema\Schema;
 
-return new class extends Migration
-{
+return new class() extends Migration {
     public function up(): void
     {
         // 创建标签表
-        Schema::create('jileapp_cms_tag', function (Blueprint $table) {
+        Schema::create('jileapp_cms_tag', static function (Blueprint $table) {
             $table->id();
             $table->string('name_title', 50)->comment('标签名称');
             $table->string('slug_title', 50)->unique()->nullable()->comment('标签别名');
@@ -31,7 +30,7 @@ return new class extends Migration
         });
 
         // 创建固定代码表
-        Schema::create('jileapp_cms_snippets', function (Blueprint $table) {
+        Schema::create('jileapp_cms_snippets', static function (Blueprint $table) {
             $table->id();
             $table->string('name', 50)->comment('名称');
             $table->string('code', 50)->unique()->comment('调用代码');
@@ -46,7 +45,7 @@ return new class extends Migration
         });
 
         // 创建分类表
-        Schema::create('jileapp_cms_categorie', function (Blueprint $table) {
+        Schema::create('jileapp_cms_categorie', static function (Blueprint $table) {
             $table->id();
             $table->string('name_title', 50)->comment('分类名称');
             $table->string('slug_title', 50)->unique()->nullable()->comment('分类别名');
@@ -62,7 +61,7 @@ return new class extends Migration
         });
 
         // 创建文章表
-        Schema::create('jileapp_cms_article', function (Blueprint $table) {
+        Schema::create('jileapp_cms_article', static function (Blueprint $table) {
             $table->id();
             $table->string('title_title', 200)->comment('文章标题');
             $table->string('slug_title', 200)->unique()->nullable()->comment('文章别名');
@@ -81,17 +80,19 @@ return new class extends Migration
         });
 
         // 创建文章标签关联表
-        Schema::create('jileapp_cms_article_tag', function (Blueprint $table) {
+        Schema::create('jileapp_cms_article_tag', static function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('article_id')->nullable()->comment('文章ID');
             $table->unsignedBigInteger('tag_id')->nullable()->comment('标签ID');
+            $table->timestamps();
+            $table->softDeletes();
             $table->foreign('article_id')->references('id')->on('jileapp_cms_article');
             $table->foreign('tag_id')->references('id')->on('jileapp_cms_tag');
             $table->comment('文章与标签关联表');
         });
 
         // 创建广告位表
-        Schema::create('jileapp_cms_ad_position', function (Blueprint $table) {
+        Schema::create('jileapp_cms_ad_position', static function (Blueprint $table) {
             $table->id();
             $table->string('name_title', 50)->comment('广告位名称');
             $table->string('code_title', 50)->unique()->comment('广告位代码');
@@ -108,7 +109,7 @@ return new class extends Migration
         });
 
         // 创建广告表
-        Schema::create('jileapp_cms_advertisement', function (Blueprint $table) {
+        Schema::create('jileapp_cms_advertisement', static function (Blueprint $table) {
             $table->id();
             $table->string('title_title', 100)->comment('广告标题');
             $table->unsignedBigInteger('position_id')->nullable()->comment('广告位ID');
@@ -141,4 +142,4 @@ return new class extends Migration
         Schema::dropIfExists('jileapp_cms_snippets');
         Schema::dropIfExists('jileapp_cms_tag');
     }
-}; 
+};

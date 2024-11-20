@@ -15,9 +15,11 @@ namespace Plugin\Cms\Http\Controller;
 use App\Http\Common\Controller\AbstractController as Base;
 use App\Http\Common\Result;
 use Hyperf\HttpServer\Annotation\Controller;
-use Hyperf\HttpServer\Annotation\GetMapping;
-use Hyperf\Swagger\Annotation as OA;
+use Hyperf\HttpServer\Annotation\RequestMapping;
+use Hyperf\HttpServer\Contract\RequestInterface;
 use Plugin\Cms\Model\Advertisement\JileappCmsAdvertisement;
+use Plugin\Cms\Model\Article\JileappCmsArticle;
+use Plugin\Cms\Model\Categorie\JileappCmsCategorie;
 use Plugin\Cms\Model\Position\JileappCmsAdPosition;
 use Plugin\Cms\Model\Snippets\JileappCmsSnippet;
 
@@ -27,32 +29,7 @@ class ApiController extends Base
     /**
      * 获取CMS变量内容.
      */
-    #[GetMapping(path: 'snippets/{code}')]
-    #[OA\Get(
-        path: '/api/cms/v1/snippets/{code}',
-        summary: '获取CMS变量内容',
-        tags: ['cms'],
-        parameters: [
-            new OA\Parameter(
-                name: 'code',
-                description: '变量代码',
-                in: 'path',
-                required: true,
-                schema: new OA\Schema(type: 'string')
-            ),
-        ]
-    )]
-    #[OA\Response(
-        response: 200,
-        description: '成功',
-        content: new OA\JsonContent(
-            properties: [
-                new OA\Property(property: 'code', type: 'integer', example: 200),
-                new OA\Property(property: 'message', type: 'string', example: '操作成功'),
-                new OA\Property(property: 'data', type: 'object'),
-            ]
-        )
-    )]
+    #[RequestMapping(path: 'snippets/{code}', methods: 'get,post')]
     public function getSnippet(string $code): Result
     {
         if (empty($code)) {
@@ -74,26 +51,58 @@ class ApiController extends Base
     }
 
     //  获取广告内容
-    #[GetMapping(path: 'ad/{code}')]
+    #[RequestMapping(path: 'ad/{code}', methods: 'get,post')]
     public function getAd(string $code): Result
     {
         if (empty($code)) {
             return $this->error('广告代码不能为空');
         }
         $ad = JileappCmsAdPosition::query()
-            ->where('code', $code)
-            ->where('status', 1)
+            ->where('code_title', $code)
+            ->where('status_switch', 1)
             ->first();
         if (! $ad) {
             return $this->error('广告位不存在或未启用');
         }
         $ad_vertisement = JileappCmsAdvertisement::query()
-            ->where('ad_position_id', $ad->id)
-            ->where('status', 1)
+            ->where('position_id', $ad->id)
+            ->where('status_switch', 1)
             ->get();
         // 通过广告位id获取广告内容
         return $this->success([
             $ad_vertisement,
+        ]);
+    }
+
+    #[RequestMapping(path: 'categorie', methods: 'get,post')]
+    public function getCategorie()
+    {
+        $categorie = JileappCmsCategorie::query()
+            ->where('status_switch', '1')
+            ->get();
+        return $this->success([
+            $categorie,
+        ]);
+    }
+
+    //  获取分组下的文章
+    #[RequestMapping(path: 'article', methods: 'get,post')]
+    public function article(RequestInterface $request)
+    {
+        $id = $request->input('id');
+        if (empty($id)) {
+            return $this->error('分组id不能为空');
+            $categories = JileappCmsCategorie::query()->where('id', $id)->where('status_switch', 1)->first();
+            if (! $categories) {
+                return $this->error('分组不存在或未启用');
+            }
+        }
+        $article = JileappCmsArticle::query()
+            ->where('category_id', $request->input('id'))
+            ->where('status', 1)
+            ->get();
+        return $this->success([
+            $article,
         ]);
     }
 }

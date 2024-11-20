@@ -1,14 +1,23 @@
 <?php
 
 declare(strict_types=1);
+/**
+ * This file is part of MineAdmin.
+ *
+ * @link     https://www.mineadmin.com
+ * @document https://doc.mineadmin.com
+ * @contact  root@imoi.cn
+ * @license  https://github.com/mineadmin/MineAdmin/blob/master/LICENSE
+ */
 
 namespace Plugin\Cms\Model\Categorie;
 
+use Carbon\Carbon;
 use Hyperf\Database\Model\SoftDeletes;
 use Hyperf\DbConnection\Model\Model;
 
 /**
- * @property int $id 
+ * @property int $id
  * @property string $name_title 分类名称
  * @property string $slug_title 分类别名
  * @property string $description_text 分类描述
@@ -17,13 +26,14 @@ use Hyperf\DbConnection\Model\Model;
  * @property string $status_switch 开关
  * @property int $created_by 创建者
  * @property int $updated_by 更新者
- * @property \Carbon\Carbon $created_at 创建时间
- * @property \Carbon\Carbon $updated_at 更新时间
+ * @property Carbon $created_at 创建时间
+ * @property Carbon $updated_at 更新时间
  * @property string $deleted_at 删除时间
  */
 class JileappCmsCategorie extends Model
 {
     use SoftDeletes;
+
     /**
      * The table associated with the model.
      */
