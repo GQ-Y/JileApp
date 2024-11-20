@@ -10,6 +10,7 @@ cms:
     dashboard: 總覽
   tag:
     subTitle: 你可在此處創建標籤，並進行標籤管理
+    id: ID
     name: 標籤名稱
     alias: 標籤別名
     status: 狀態
