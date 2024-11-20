@@ -10,6 +10,7 @@ cms:
     dashboard: 总览
   tag:
     subTitle: 你可在此处创建标签，并进行标签管理
+    id: ID
     name: 标签名称
     alias: 标签别名
     status: 状态
