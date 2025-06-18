@@ -1,0 +1,491 @@
+{
+  "document_info": {
+    "title": "Docker本地环境配置规范",
+    "version": "1.0.0",
+    "author": {
+      "name": "GQ",
+      "email": "1959595510@qq.com",
+      "website": "www.guanqi.store",
+      "github": "https://github.com/GQ-Y"
+    },
+    "description": "MineAdmin系统Docker本地环境配置信息和操作规范",
+    "last_updated": "2024-12-28"
+  },
+  "environment_overview": {
+    "description": "Docker容器化本地开发环境配置",
+    "purpose": "为MineAdmin系统提供标准化的本地开发环境",
+    "components": [
+      "MySQL数据库服务",
+      "Redis缓存服务"
+    ]
+  },
+  "database_configuration": {
+    "mysql": {
+      "service_name": "MySQL数据库服务",
+      "environment_variables": {
+        "DB_DRIVER": {
+          "value": "mysql",
+          "description": "数据库驱动类型"
+        },
+        "DB_HOST": {
+          "value": "127.0.0.1",
+          "description": "数据库主机地址"
+        },
+        "DB_PORT": {
+          "value": "3306",
+          "description": "数据库端口号",
+          "type": "integer"
+        },
+        "DB_DATABASE": {
+          "value": "mineadmin",
+          "description": "数据库名称"
+        },
+        "DB_USERNAME": {
+          "value": "root",
+          "description": "数据库用户名"
+        },
+        "DB_PASSWORD": {
+          "value": "123456",
+          "description": "数据库密码"
+        },
+        "DB_CHARSET": {
+          "value": "utf8mb4",
+          "description": "数据库字符集"
+        },
+        "DB_COLLATION": {
+          "value": "utf8mb4_unicode_ci",
+          "description": "数据库排序规则"
+        }
+      },
+      "connection_info": {
+        "full_connection_string": "mysql://root:123456@127.0.0.1:3306/mineadmin",
+        "charset": "utf8mb4",
+        "collation": "utf8mb4_unicode_ci"
+      },
+      "docker_access": {
+        "description": "执行MySQL命令时，需通过Docker命令连接MySQL容器后执行",
+        "access_methods": [
+          {
+            "method": "Docker Exec",
+            "command_template": "docker exec -it <mysql_container_name> mysql -u root -p123456",
+            "description": "通过Docker exec进入MySQL容器执行命令"
+          },
+          {
+            "method": "Docker Run",
+            "command_template": "docker run -it --rm --network=host mysql:latest mysql -h 127.0.0.1 -u root -p123456 mineadmin",
+            "description": "使用临时容器连接MySQL"
+          }
+        ]
+      }
+    }
+  },
+  "cache_configuration": {
+    "redis": {
+      "service_name": "Redis缓存服务",
+      "environment_variables": {
+        "REDIS_HOST": {
+          "value": "127.0.0.1",
+          "description": "Redis主机地址"
+        },
+        "REDIS_AUTH": {
+          "value": "123456",
+          "description": "Redis认证密码"
+        },
+        "REDIS_PORT": {
+          "value": "6379",
+          "description": "Redis端口号",
+          "type": "integer"
+        },
+        "REDIS_DB": {
+          "value": "3",
+          "description": "Redis数据库索引",
+          "type": "integer"
+        }
+      },
+      "connection_info": {
+        "full_connection_string": "redis://:123456@127.0.0.1:6379/3",
+        "database_index": 3
+      },
+      "docker_access": {
+        "description": "执行Redis命令时，需通过Docker命令连接Redis容器后执行",
+        "access_methods": [
+          {
+            "method": "Docker Exec",
+            "command_template": "docker exec -it <redis_container_name> redis-cli -a 123456 -n 3",
+            "description": "通过Docker exec进入Redis容器执行命令"
+          },
+          {
+            "method": "Docker Run",
+            "command_template": "docker run -it --rm --network=host redis:latest redis-cli -h 127.0.0.1 -p 6379 -a 123456 -n 3",
+            "description": "使用临时容器连接Redis"
+          }
+        ]
+      }
+    }
+  },
+  "docker_operations": {
+    "general_rules": {
+      "database_access": "所有数据库操作必须通过Docker容器执行",
+      "network_mode": "容器使用host网络模式或适当的网络配置",
+      "security": "密码和敏感信息应通过环境变量或Docker secrets管理"
+    },
+    "common_commands": {
+      "mysql_operations": [
+        {
+          "operation": "连接MySQL数据库",
+          "command": "docker exec -it <mysql_container_name> mysql -u root -p",
+          "notes": "需要输入密码123456"
+        },
+        {
+          "operation": "执行SQL文件",
+          "command": "docker exec -i <mysql_container_name> mysql -u root -p123456 mineadmin < /path/to/sql/file.sql",
+          "notes": "从宿主机执行SQL文件"
+        },
+        {
+          "operation": "导出数据库",
+          "command": "docker exec <mysql_container_name> mysqldump -u root -p123456 mineadmin > backup.sql",
+          "notes": "导出数据库到宿主机"
+        },
+        {
+          "operation": "查看数据库状态",
+          "command": "docker exec <mysql_container_name> mysql -u root -p123456 -e 'SHOW DATABASES;'",
+          "notes": "查看所有数据库"
+        }
+      ],
+      "redis_operations": [
+        {
+          "operation": "连接Redis",
+          "command": "docker exec -it <redis_container_name> redis-cli -a 123456",
+          "notes": "连接到Redis默认数据库"
+        },
+        {
+          "operation": "连接指定数据库",
+          "command": "docker exec -it <redis_container_name> redis-cli -a 123456 -n 3",
+          "notes": "连接到数据库索引3"
+        },
+        {
+          "operation": "查看Redis信息",
+          "command": "docker exec <redis_container_name> redis-cli -a 123456 info",
+          "notes": "查看Redis服务器信息"
+        },
+        {
+          "operation": "查看所有键",
+          "command": "docker exec <redis_container_name> redis-cli -a 123456 -n 3 keys '*'",
+          "notes": "查看数据库3中的所有键"
+        },
+        {
+          "operation": "清空数据库",
+          "command": "docker exec <redis_container_name> redis-cli -a 123456 -n 3 flushdb",
+          "notes": "清空数据库3中的数据"
+        }
+      ]
+    }
+  },
+  "container_management": {
+    "lifecycle_operations": [
+      {
+        "operation": "查看运行中的容器",
+        "command": "docker ps",
+        "description": "列出所有正在运行的容器"
+      },
+      {
+        "operation": "查看所有容器",
+        "command": "docker ps -a",
+        "description": "列出所有容器（包括停止的）"
+      },
+      {
+        "operation": "启动容器",
+        "command": "docker start <container_name>",
+        "description": "启动指定容器"
+      },
+      {
+        "operation": "停止容器",
+        "command": "docker stop <container_name>",
+        "description": "停止指定容器"
+      },
+      {
+        "operation": "重启容器",
+        "command": "docker restart <container_name>",
+        "description": "重启指定容器"
+      },
+      {
+        "operation": "查看容器日志",
+        "command": "docker logs <container_name>",
+        "description": "查看容器日志输出"
+      },
+      {
+        "operation": "查看容器实时日志",
+        "command": "docker logs -f <container_name>",
+        "description": "实时跟踪容器日志"
+      }
+    ],
+    "resource_monitoring": [
+      {
+        "operation": "查看容器资源使用",
+        "command": "docker stats",
+        "description": "查看所有容器的CPU、内存使用情况"
+      },
+      {
+        "operation": "查看指定容器资源",
+        "command": "docker stats <container_name>",
+        "description": "查看指定容器的资源使用情况"
+      },
+      {
+        "operation": "查看容器详细信息",
+        "command": "docker inspect <container_name>",
+        "description": "查看容器的详细配置信息"
+      }
+    ]
+  },
+  "docker_compose_configuration": {
+    "description": "推荐使用Docker Compose管理多容器应用",
+    "sample_compose_structure": {
+      "version": "3.8",
+      "services": {
+        "mysql": {
+          "image": "mysql:8.0",
+          "environment": {
+            "MYSQL_ROOT_PASSWORD": "123456",
+            "MYSQL_DATABASE": "mineadmin",
+            "MYSQL_USER": "mineadmin",
+            "MYSQL_PASSWORD": "123456"
+          },
+          "ports": ["3306:3306"],
+          "volumes": ["mysql_data:/var/lib/mysql"],
+          "command": "--character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci"
+        },
+        "redis": {
+          "image": "redis:7-alpine",
+          "command": "redis-server --requirepass 123456",
+          "ports": ["6379:6379"],
+          "volumes": ["redis_data:/data"]
+        }
+      },
+      "volumes": {
+        "mysql_data": {},
+        "redis_data": {}
+      }
+    },
+    "compose_commands": [
+      {
+        "operation": "启动所有服务",
+        "command": "docker-compose up -d",
+        "description": "后台启动所有定义的服务"
+      },
+      {
+        "operation": "停止所有服务",
+        "command": "docker-compose down",
+        "description": "停止并删除所有容器"
+      },
+      {
+        "operation": "查看服务状态",
+        "command": "docker-compose ps",
+        "description": "查看所有服务的运行状态"
+      },
+      {
+        "operation": "查看服务日志",
+        "command": "docker-compose logs <service_name>",
+        "description": "查看指定服务的日志"
+      },
+      {
+        "operation": "重启服务",
+        "command": "docker-compose restart <service_name>",
+        "description": "重启指定服务"
+      }
+    ]
+  },
+  "environment_file_template": {
+    "filename": ".env",
+    "content": {
+      "database_section": {
+        "DB_DRIVER": "mysql",
+        "DB_HOST": "127.0.0.1",
+        "DB_PORT": "3306",
+        "DB_DATABASE": "mineadmin",
+        "DB_USERNAME": "root",
+        "DB_PASSWORD": "123456",
+        "DB_CHARSET": "utf8mb4",
+        "DB_COLLATION": "utf8mb4_unicode_ci"
+      },
+      "redis_section": {
+        "REDIS_HOST": "127.0.0.1",
+        "REDIS_AUTH": "123456",
+        "REDIS_PORT": "6379",
+        "REDIS_DB": "3"
+      }
+    },
+    "usage": "将此配置放在项目根目录的.env文件中"
+  },
+  "troubleshooting": {
+    "common_issues": [
+      {
+        "issue": "无法连接MySQL",
+        "possible_causes": [
+          "MySQL容器未启动",
+          "端口冲突",
+          "密码错误",
+          "网络配置问题"
+        ],
+        "solutions": [
+          "检查容器状态：docker ps",
+          "检查端口占用：netstat -tulpn | grep 3306",
+          "验证密码配置",
+          "检查Docker网络配置"
+        ]
+      },
+      {
+        "issue": "无法连接Redis",
+        "possible_causes": [
+          "Redis容器未启动",
+          "认证失败",
+          "数据库索引错误",
+          "网络配置问题"
+        ],
+        "solutions": [
+          "检查容器状态：docker ps",
+          "验证密码：docker exec <redis_container> redis-cli -a 123456 ping",
+          "确认数据库索引配置",
+          "检查防火墙设置"
+        ]
+      },
+      {
+        "issue": "容器启动失败",
+        "possible_causes": [
+          "端口已被占用",
+          "卷挂载权限问题",
+          "内存不足",
+          "镜像损坏"
+        ],
+        "solutions": [
+          "更改端口映射",
+          "检查目录权限：chmod 755 <directory>",
+          "释放系统内存",
+          "重新拉取镜像：docker pull <image>"
+        ]
+      }
+    ],
+    "diagnostic_commands": [
+      {
+        "command": "docker logs <container_name>",
+        "purpose": "查看容器错误日志"
+      },
+      {
+        "command": "docker exec <container_name> ps aux",
+        "purpose": "查看容器内进程"
+      },
+      {
+        "command": "docker network ls",
+        "purpose": "查看Docker网络"
+      },
+      {
+        "command": "docker volume ls",
+        "purpose": "查看Docker卷"
+      }
+    ]
+  },
+  "security_considerations": {
+    "best_practices": [
+      "使用强密码",
+      "限制容器网络访问",
+      "定期更新镜像",
+      "使用非root用户运行容器",
+      "启用日志记录",
+      "定期备份数据"
+    ],
+    "password_management": {
+      "recommendation": "生产环境应使用Docker secrets或环境变量文件管理密码",
+      "avoid": "避免在Dockerfile或docker-compose.yml中硬编码密码",
+      "example_secret_usage": "echo 'my_secret_password' | docker secret create mysql_password -"
+    },
+    "network_security": {
+      "principles": [
+        "使用自定义网络隔离容器",
+        "限制不必要的端口暴露",
+        "使用防火墙规则",
+        "启用TLS/SSL加密"
+      ]
+    }
+  },
+  "backup_and_recovery": {
+    "mysql_backup": {
+      "full_backup": {
+        "command": "docker exec <mysql_container> mysqldump -u root -p123456 --all-databases > full_backup.sql",
+        "description": "备份所有数据库"
+      },
+      "single_database_backup": {
+        "command": "docker exec <mysql_container> mysqldump -u root -p123456 mineadmin > mineadmin_backup.sql",
+        "description": "备份单个数据库"
+      },
+      "restore": {
+        "command": "docker exec -i <mysql_container> mysql -u root -p123456 mineadmin < mineadmin_backup.sql",
+        "description": "恢复数据库"
+      }
+    },
+    "redis_backup": {
+      "rdb_backup": {
+        "command": "docker exec <redis_container> redis-cli -a 123456 bgsave",
+        "description": "创建RDB快照"
+      },
+      "copy_rdb": {
+        "command": "docker cp <redis_container>:/data/dump.rdb ./redis_backup.rdb",
+        "description": "复制RDB文件到宿主机"
+      },
+      "restore": {
+        "steps": [
+          "停止Redis容器",
+          "复制备份文件到数据卷",
+          "重启Redis容器"
+        ]
+      }
+    },
+    "automated_backup": {
+      "cron_example": "0 2 * * * docker exec mysql_container mysqldump -u root -p123456 mineadmin > /backup/mineadmin_$(date +%Y%m%d).sql",
+      "description": "使用cron定时备份数据库"
+    }
+  },
+  "performance_optimization": {
+    "mysql_tuning": [
+      "调整innodb_buffer_pool_size",
+      "优化query_cache_size",
+      "配置慢查询日志",
+      "使用适当的索引"
+    ],
+    "redis_tuning": [
+      "配置内存淘汰策略",
+      "调整持久化设置",
+      "监控内存使用",
+      "使用Redis Cluster进行扩展"
+    ],
+    "container_optimization": [
+      "限制容器资源使用",
+      "使用多阶段构建减小镜像大小",
+      "配置健康检查",
+      "使用init进程避免僵尸进程"
+    ]
+  },
+  "integration_with_mineadmin": {
+    "configuration_integration": {
+      "description": "Docker环境配置需要与MineAdmin系统配置保持一致",
+      "config_files": [
+        ".env（环境变量配置）",
+        "config/autoload/databases.php（数据库配置）",
+        "config/autoload/redis.php（Redis配置）"
+      ]
+    },
+    "development_workflow": [
+      "启动Docker服务",
+      "配置环境变量",
+      "运行数据库迁移",
+      "启动MineAdmin应用",
+      "进行开发和测试"
+    ]
+  },
+  "conclusion": {
+    "description": "本文档提供了MineAdmin系统Docker本地环境的完整配置和操作规范。开发者应严格按照此规范配置和管理Docker环境，确保开发环境的一致性和稳定性。",
+    "author_credit": {
+      "document_author": "GQ",
+      "technical_support": "@GQ-Y",
+      "official_website": "www.guanqi.store"
+    }
+  }
+} 

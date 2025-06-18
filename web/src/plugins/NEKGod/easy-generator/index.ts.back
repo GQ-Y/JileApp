@@ -27,7 +27,7 @@ const pluginConfig: Plugin.PluginConfig = {
       name: 'easyGenerator',
       path: '/easy-generator',
       meta: {
-        title: 'easy代码生成器1.2.0',
+        title: '代码生成器',
         i18n: '',
         icon: 'i-solar:code-square-outline',
         type: 'M',

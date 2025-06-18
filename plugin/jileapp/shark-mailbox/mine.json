@@ -1,0 +1,23 @@
+{
+    "name": "shark-mailbox",
+    "version": "1.0.0",
+    "type": "mixed",
+    "description": "鲨鱼信箱,专注高质量收信",
+    "author": [
+        {
+            "name": "GQ-Y"
+        }
+    ],
+    "composer": {
+        "require": [],
+        "psr-4": {
+            "Plugin\\SharkMailbox\\": "src"
+        },
+        "installScript": "Plugin\\SharkMailbox\\InstallScript",
+        "uninstallScript": "Plugin\\SharkMailbox\\UninstallScript",
+        "config": "Plugin\\SharkMailbox\\ConfigProvider"
+    },
+    "package": {
+        "dependencies": []
+    }
+}

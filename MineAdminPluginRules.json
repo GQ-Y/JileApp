@@ -1,0 +1,589 @@
+{
+  "document_info": {
+    "title": "MineAdmin插件开发规范要求",
+    "version": "1.0.0",
+    "author": {
+      "name": "GQ",
+      "email": "1959595510@qq.com",
+      "website": "www.guanqi.store",
+      "github": "https://github.com/GQ-Y"
+    },
+    "description": "MineAdmin系统插件开发的完整规范和最佳实践指南",
+    "last_updated": "2024-12-28"
+  },
+  "system_initialization": {
+    "title": "MineAdmin系统初始化数据库流程",
+    "steps": [
+      {
+        "step": 1,
+        "name": "安装Vendor",
+        "command": "./swoole-cli /opt/homebrew/Cellar/composer/2.8.9/bin/composer install -vvv"
+      },
+      {
+        "step": 2,
+        "name": "数据表迁移",
+        "command": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php migrate"
+      },
+      {
+        "step": 3,
+        "name": "数据填充",
+        "command": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php db:seed"
+      }
+    ],
+    "frontend_startup": {
+      "directory": "cd web",
+      "install_dependencies": "pnpm i",
+      "start_development": "pnpm dev"
+    }
+  },
+  "command_executors": {
+    "description": "在本系统中，所有涉及PHP和Composer的命令操作必须使用特定的执行器",
+    "php_executor": {
+      "command": "./swoole-cli -d swoole.use_shortname='Off'",
+      "example": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php mine-extension:list"
+    },
+    "composer_executor": {
+      "command": "./swoole-cli /opt/homebrew/Cellar/composer/2.8.9/bin/composer",
+      "examples": [
+        "./swoole-cli /opt/homebrew/Cellar/composer/2.8.9/bin/composer install -vvv",
+        "./swoole-cli /opt/homebrew/Cellar/composer/2.8.9/bin/composer update"
+      ]
+    }
+  },
+  "plugin_installation_mechanism": {
+    "title": "MineAdmin插件安装机制",
+    "execution_order": [
+      {
+        "step": 1,
+        "name": "InstallScript执行",
+        "description": "首先执行插件的InstallScript::__invoke()方法"
+      },
+      {
+        "step": 2,
+        "name": "数据库迁移执行",
+        "description": "然后自动执行Database/Migrations/目录下的迁移文件"
+      },
+      {
+        "step": 3,
+        "name": "数据填充执行",
+        "description": "最后自动执行Database/Seeders/目录下的填充文件"
+      },
+      {
+        "step": 4,
+        "name": "创建install.lock",
+        "description": "安装成功后自动创建install.lock文件标识插件已安装"
+      }
+    ],
+    "install_lock_management": {
+      "description": "install.lock文件完全由MineAdmin框架自动管理，开发者不应该手动创建或删除此文件",
+      "auto_create": "框架安装时自动创建install.lock文件",
+      "auto_delete": "框架卸载时自动删除install.lock文件",
+      "status_check": "框架通过此文件判断插件安装状态"
+    },
+    "best_practices": {
+      "install_script": {
+        "description": "InstallScript最佳实践",
+        "do_not": [
+          "手动创建数据库表（会与系统自动迁移冲突）",
+          "手动创建install.lock文件"
+        ],
+        "should_do": [
+          "只执行非数据库相关的初始化工作",
+          "初始化配置文件",
+          "创建必要的目录",
+          "设置权限等"
+        ]
+      },
+      "separation_of_concerns": {
+        "migration_files": "只负责数据库结构定义（表、索引、外键等）",
+        "seeder_files": "只负责初始数据填充",
+        "install_script": "负责非数据库相关的初始化工作"
+      }
+    }
+  },
+  "official_commands": {
+    "title": "MineAdmin官方支持的所有命令",
+    "console_tool": {
+      "usage": "command [options] [arguments]",
+      "global_options": [
+        "-h, --help: Display help for the given command",
+        "-q, --quiet: Do not output any message",
+        "-V, --version: Display this application version",
+        "--ansi|--no-ansi: Force (or disable --no-ansi) ANSI output",
+        "-n, --no-interaction: Do not ask any interactive question",
+        "-v|vv|vvv, --verbose: Increase the verbosity of messages"
+      ]
+    },
+    "available_commands": {
+      "basic": [
+        "completion: Dump the shell completion script",
+        "help: Display help for a command",
+        "info: Dump the server info",
+        "list: List commands",
+        "migrate: Run the database migrations",
+        "start: Start hyperf servers",
+        "tinker: Interact with your application"
+      ],
+      "codeGen": [
+        "codeGen:model: Create new model classes"
+      ],
+      "crontab": [
+        "crontab:run"
+      ],
+      "db": [
+        "db:seed: Seed the database with records"
+      ],
+      "describe": [
+        "describe:aspects: Describe the aspects",
+        "describe:listeners: Describe the events and listeners",
+        "describe:routes: Describe the routes information"
+      ],
+      "gen": [
+        "gen:amqp-consumer: Create a new amqp consumer class",
+        "gen:amqp-producer: Create a new amqp producer class",
+        "gen:aspect: Create a new aspect class",
+        "gen:class: Create a new class",
+        "gen:command: Create a new command class",
+        "gen:constant: Create a new constant class",
+        "gen:controller: Create a new controller class",
+        "gen:job: Create a new job class",
+        "gen:kafka-consumer: Create a new kafka consumer class",
+        "gen:listener: Create a new listener class",
+        "gen:middleware: Create a new middleware class",
+        "gen:migration: Generate a new migration file",
+        "gen:model: Create new model classes",
+        "gen:nats-consumer: Create a new nats consumer class",
+        "gen:nsq-consumer: Create a new nsq-consumer class",
+        "gen:process: Create a new process class",
+        "gen:request: Create a new form request class",
+        "gen:resource: create a new resource",
+        "gen:seeder: Create a new seeder class",
+        "gen:swagger: Generate swagger json file",
+        "gen:swagger-schema: Generate swagger schemas",
+        "gen:view-engine-cache: Generate View Engine Cache"
+      ],
+      "migrate": [
+        "migrate:fresh: Drop all tables and re-run all migrations",
+        "migrate:install: Create the migration repository",
+        "migrate:refresh: Reset and re-run all migrations",
+        "migrate:reset: Rollback all database migrations",
+        "migrate:rollback: Rollback the last database migration",
+        "migrate:status: Show the status of each migration"
+      ],
+      "mine": [
+        "mine:model-gen: Generate model to module according to data table",
+        "mine:request-gen: Generate validate form request class file",
+        "mine:update-20241031"
+      ],
+      "mine-extension": [
+        "mine-extension:create: Creating Plug-ins",
+        "mine-extension:download: Download the specified remote plug-in file locally",
+        "mine-extension:initial: MineAdmin Extended Store Initialization Command Line",
+        "mine-extension:install: Installing Plugin Commands",
+        "mine-extension:list: View a list of remote app store plugins",
+        "mine-extension:local-list: List all locally installed extensions",
+        "mine-extension:push: Quickly perform plugin packaging and deployment processing",
+        "mine-extension:release",
+        "mine-extension:script: Publish any publishable configs from vendor plugins",
+        "mine-extension:uninstall: Uninstalling Plugin Commands"
+      ],
+      "queue": [
+        "queue:dynamic-reload: Reload all failed message into waiting queue",
+        "queue:flush: Delete all message from failed queue",
+        "queue:info: Get all messages from the queue",
+        "queue:reload: Reload all failed message into waiting queue"
+      ],
+      "server": [
+        "server:watch: watch command"
+      ],
+      "vendor": [
+        "vendor:publish: Publish any publishable configs from vendor packages"
+      ],
+      "view": [
+        "view:publish"
+      ]
+    }
+  },
+  "plugin_development_standards": {
+    "initialization": {
+      "create_command": {
+        "template": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php mine-extension:create <plugin-name>",
+        "example": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php mine-extension:create attraction-management"
+      },
+      "naming_conventions": {
+        "plugin_name": "小写字母和连字符，如：attraction-management",
+        "directory": "plugin/<vendor>/<plugin-name>/",
+        "namespace": "Plugin\\<Vendor>\\<PluginName>"
+      }
+    },
+    "directory_structure": {
+      "required_structure": {
+        "Database/": {
+          "Migrations/": "数据库迁移文件",
+          "Seeders/": "数据填充文件"
+        },
+        "src/": {
+          "ConfigProvider.php": "配置提供者（必需）",
+          "InstallScript.php": "安装脚本（推荐）",
+          "UninstallScript.php": "卸载脚本（推荐）",
+          "Controller/": {
+            "AbstractController.php": "抽象控制器基类"
+          },
+          "Model/": "模型目录",
+          "Repository/": "仓储目录（可选）",
+          "Service/": "服务目录（必需）",
+          "Common/": "公共类目录（可选）"
+        },
+        "mine.json": "插件元信息（必需）"
+      },
+      "directory_descriptions": {
+        "src/": "插件源码主目录",
+        "Controller/": "控制器层，负责请求处理和响应",
+        "Service/": "服务层，负责业务逻辑处理（必需）",
+        "Model/": "模型层，负责数据模型定义",
+        "Repository/": "仓储层，负责数据访问（可选）",
+        "Common/": "公共工具类和辅助类",
+        "Database/": "数据库相关文件"
+      }
+    },
+    "core_files": {
+      "ConfigProvider": {
+        "required": true,
+        "template": {
+          "namespace": "Plugin\\<Vendor>\\<PluginName>",
+          "class_name": "ConfigProvider",
+          "method": "__invoke",
+          "return_type": "array",
+          "required_config": {
+            "annotations": {
+              "scan": {
+                "paths": ["__DIR__"]
+              }
+            }
+          },
+          "optional_config": [
+            "dependencies",
+            "commands",
+            "listeners"
+          ]
+        }
+      },
+      "InstallScript": {
+        "recommended": true,
+        "template": {
+          "namespace": "Plugin\\<Vendor>\\<PluginName>",
+          "class_name": "InstallScript",
+          "method": "__invoke",
+          "responsibilities": [
+            "初始化配置文件",
+            "创建必要的目录",
+            "设置权限等",
+            "非数据库相关的初始化工作"
+          ],
+          "error_handling": "不抛出异常，避免阻止后续安装流程"
+        }
+      },
+      "UninstallScript": {
+        "recommended": true,
+        "template": {
+          "namespace": "Plugin\\<Vendor>\\<PluginName>",
+          "class_name": "UninstallScript",
+          "method": "__invoke",
+          "responsibilities": [
+            "删除数据表",
+            "清理配置",
+            "删除文件"
+          ]
+        }
+      },
+      "mine_json": {
+        "required": true,
+        "template": {
+          "name": "<vendor>/<plugin-name>",
+          "description": "插件描述",
+          "version": "1.0.0",
+          "author": [
+            {
+              "name": "GQ",
+              "email": "1959595510@qq.com"
+            }
+          ],
+          "package": {
+            "dependencies": {}
+          },
+          "composer": {
+            "require": {
+              "php": ">=8.0",
+              "hyperf/hyperf": "~3.0.0"
+            },
+            "psr-4": {
+              "Plugin\\<Vendor>\\<PluginName>\\": "src"
+            },
+            "installScript": "Plugin\\<Vendor>\\<PluginName>\\InstallScript",
+            "uninstallScript": "Plugin\\<Vendor>\\<PluginName>\\UninstallScript",
+            "config": "Plugin\\<Vendor>\\<PluginName>\\ConfigProvider"
+          }
+        },
+        "field_descriptions": {
+          "name": "插件完整名称（vendor/plugin-name格式）",
+          "description": "插件功能描述",
+          "version": "版本号（遵循语义化版本规范）",
+          "author": "作者信息数组",
+          "package.dependencies": "插件依赖关系",
+          "composer.require": "Composer依赖要求",
+          "composer.psr-4": "PSR-4自动加载映射",
+          "composer.installScript": "安装脚本类路径",
+          "composer.uninstallScript": "卸载脚本类路径",
+          "composer.config": "ConfigProvider类路径"
+        }
+      }
+    }
+  },
+  "plugin_management_commands": {
+    "installation": {
+      "command": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php mine-extension:install <vendor>/<plugin-name>",
+      "example": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php mine-extension:install gq/tag-management"
+    },
+    "uninstallation": {
+      "command": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php mine-extension:uninstall <vendor>/<plugin-name>",
+      "example": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php mine-extension:uninstall gq/tag-management"
+    },
+    "management_commands": [
+      {
+        "name": "查看远程插件列表",
+        "command": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php mine-extension:list"
+      },
+      {
+        "name": "查看本地已安装插件列表",
+        "command": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php mine-extension:local-list"
+      },
+      {
+        "name": "创建新插件",
+        "command": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php mine-extension:create <plugin-name>"
+      },
+      {
+        "name": "下载远程插件",
+        "command": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php mine-extension:download <plugin-name>"
+      },
+      {
+        "name": "插件打包和部署",
+        "command": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php mine-extension:push"
+      },
+      {
+        "name": "发布插件配置",
+        "command": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php mine-extension:script"
+      }
+    ]
+  },
+  "database_standards": {
+    "table_naming": {
+      "format": "<prefix>_<module>_<function>",
+      "prefix": "gq_（根据插件作者自定义）",
+      "examples": [
+        "gq_attraction_category（景点分类表）",
+        "gq_attraction_info（景点信息表）",
+        "gq_attraction_images（景点图片表）"
+      ]
+    },
+    "migration_standards": {
+      "template": {
+        "imports": [
+          "use Hyperf\\Database\\Schema\\Schema;",
+          "use Hyperf\\Database\\Schema\\Blueprint;",
+          "use Hyperf\\Database\\Migrations\\Migration;"
+        ],
+        "class_extends": "Migration",
+        "methods": {
+          "up": "创建表结构",
+          "down": "删除表结构"
+        },
+        "best_practices": [
+          "使用合适的字段类型",
+          "添加字段注释",
+          "设置合理的默认值",
+          "添加必要的索引",
+          "添加表注释"
+        ]
+      }
+    },
+    "seeder_standards": {
+      "template": {
+        "imports": [
+          "use Hyperf\\Database\\Seeders\\Seeder;",
+          "use Hyperf\\DbConnection\\Db;"
+        ],
+        "class_extends": "Seeder",
+        "method": "run",
+        "data_insertion": "使用Db::table()->insert()方法"
+      }
+    }
+  },
+  "code_development_standards": {
+    "controller_standards": {
+      "abstract_controller": {
+        "purpose": "每个插件应该定义自己的抽象控制器基类",
+        "inheritance": "App\\Http\\Common\\Controller\\AbstractController",
+        "requirements": [
+          "使用严格类型声明 declare(strict_types=1)",
+          "注入RequestInterface"
+        ]
+      },
+      "concrete_controller": {
+        "requirements": [
+          "使用严格类型声明",
+          "继承插件内部的AbstractController",
+          "使用Hyperf注解进行路由定义",
+          "路由前缀格式：admin/plugin/<plugin-prefix>",
+          "统一返回Result类型",
+          "使用依赖注入获取服务实例"
+        ]
+      }
+    },
+    "model_standards": {
+      "inheritance": "Hyperf\\DbConnection\\Model\\Model",
+      "properties": {
+        "table": "指定表名",
+        "fillable": "可批量赋值字段",
+        "casts": "字段类型转换"
+      }
+    },
+    "service_standards": {
+      "requirements": [
+        "使用严格类型声明",
+        "统一异常处理机制",
+        "参数验证和业务逻辑分离",
+        "使用BusinessException处理业务异常",
+        "提供明确的错误提示信息"
+      ]
+    }
+  },
+  "development_debugging": {
+    "environment_requirements": {
+      "php": ">=8.0（通过./swoole-cli执行）",
+      "hyperf": ">=3.0",
+      "database": "MySQL >=5.7 或 PostgreSQL >=10",
+      "cache": "Redis >=5.0"
+    },
+    "debugging_commands": [
+      {
+        "name": "启动Hyperf服务器",
+        "command": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php start"
+      },
+      {
+        "name": "热重启服务",
+        "command": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php server:watch"
+      },
+      {
+        "name": "查看路由信息",
+        "command": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php describe:routes"
+      },
+      {
+        "name": "查看服务器信息",
+        "command": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php info"
+      },
+      {
+        "name": "数据库迁移状态",
+        "command": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php migrate:status"
+      }
+    ],
+    "code_generation_commands": [
+      {
+        "name": "生成控制器",
+        "command": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php gen:controller <ControllerName>"
+      },
+      {
+        "name": "生成模型",
+        "command": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php gen:model <ModelName>"
+      },
+      {
+        "name": "生成迁移文件",
+        "command": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php gen:migration <migration_name>"
+      },
+      {
+        "name": "生成Seeder",
+        "command": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php gen:seeder <SeederName>"
+      },
+      {
+        "name": "生成请求验证类",
+        "command": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php gen:request <RequestName>"
+      },
+      {
+        "name": "生成中间件",
+        "command": "./swoole-cli -d swoole.use_shortname='Off' bin/hyperf.php gen:middleware <MiddlewareName>"
+      }
+    ]
+  },
+  "performance_and_security": {
+    "performance_optimization": [
+      "合理使用协程特性",
+      "数据库查询优化（避免N+1问题）",
+      "适当使用缓存机制",
+      "大数据处理使用消息队列"
+    ],
+    "security_standards": [
+      "输入验证和过滤",
+      "SQL注入防护",
+      "XSS攻击防护",
+      "权限控制验证",
+      "敏感数据加密存储"
+    ]
+  },
+  "testing_standards": {
+    "unit_testing": {
+      "namespace": "PluginTest\\<Vendor>\\<PluginName>",
+      "base_class": "PHPUnit\\Framework\\TestCase"
+    },
+    "integration_testing": [
+      "测试插件安装/卸载流程",
+      "测试API接口功能",
+      "测试数据库操作正确性"
+    ]
+  },
+  "version_management": {
+    "versioning_standard": "语义化版本规范（Semantic Versioning）",
+    "format": "主版本号.次版本号.修订号（例：1.2.3）",
+    "version_meanings": {
+      "major": "不兼容的API修改",
+      "minor": "向下兼容的功能性新增",
+      "patch": "向下兼容的问题修正"
+    }
+  },
+  "advanced_features": {
+    "plugin_status_management": [
+      "安装状态检查：通过install.lock文件标识插件安装状态",
+      "插件列表获取：支持获取本地已安装插件列表",
+      "状态验证：在操作前验证插件当前状态"
+    ],
+    "file_upload_handling": {
+      "best_practices": [
+        "使用临时文件处理",
+        "处理完成后清理临时文件",
+        "异常处理和资源清理"
+      ]
+    },
+    "plugin_dependency_management": {
+      "configuration_location": "mine.json中的package.dependencies字段",
+      "format": "包名: 版本约束"
+    },
+    "error_handling": [
+      "统一异常类型：使用BusinessException处理业务异常",
+      "错误消息规范：提供清晰的错误提示信息",
+      "异常传播：适当处理和传播异常信息",
+      "资源清理：确保异常时资源得到正确清理"
+    ],
+    "plugin_configuration": [
+      "插件配置应该通过ConfigProvider进行管理",
+      "避免硬编码配置项",
+      "支持环境变量配置",
+      "提供合理的默认值"
+    ]
+  },
+  "conclusion": {
+    "description": "以上规范要求适用于MineAdmin系统的所有插件开发，开发者应严格遵循这些规范以确保插件的质量、兼容性和可维护性。本规范基于官方插件的最佳实践制定，代表了当前的技术标准和开发规范。",
+    "author_credit": {
+      "document_author": "GQ",
+      "technical_support": "@GQ-Y",
+      "official_website": "www.guanqi.store"
+    }
+  }
+} 

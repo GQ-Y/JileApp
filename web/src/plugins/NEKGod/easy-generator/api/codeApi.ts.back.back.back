@@ -38,7 +38,15 @@ export function getGenerateApi() {
       return useHttp().post('setting/code/update', data)
     },
     generateCode(data = {}){
-      return useHttp().post('setting/code/generate', data)
-    }
+      return useHttp().post('setting/code/generate', data, {
+        responseType: 'blob'
+      })
+    },
+    sync (id) {
+      return useHttp().put('setting/code/sync/' + id)
+    },
+    deletes (data = {}) {
+      return useHttp().delete('setting/code/delete', {data: data})
+    },
   }
 }
